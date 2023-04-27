@@ -70,3 +70,6 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+# https://github.com/heartcombo/devise#starting-with-rails
+gem 'devise'

@@ -9,6 +9,7 @@ services:
       - 3001:3001
     depends_on:
       - db
+      - smtp
     tty: true
     stdin_open: true
   db:
@@ -22,5 +23,10 @@ services:
       TZ: Asia/Tokyo
     ports:
       - 3306:3306
+  smtp:
+    image: schickling/mailcatcher
+    ports:
+      - 1080:1080
+      - 1025:1025
 volumes:
   db-volume:
