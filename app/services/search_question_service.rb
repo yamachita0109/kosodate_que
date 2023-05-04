@@ -5,6 +5,7 @@ class SearchQuestionService
 
   private
   def search
+    # TODO logic.
     Question.all
   end
 end
