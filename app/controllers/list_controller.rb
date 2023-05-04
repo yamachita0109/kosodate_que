@@ -1,5 +1,7 @@
 class ListController < ApplicationController
+  include Pagy::Backend
+
   def index
-    @questions = SearchQuestionService.new.call()
+    @pagy, @questions = pagy(SearchQuestionService.new.call())
   end
 end

@@ -5,6 +5,6 @@ class SearchQuestionService
 
   private
   def search
-    Question.all()
+    Question.all
   end
 end
