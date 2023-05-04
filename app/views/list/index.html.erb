@@ -1,0 +1,12 @@
+<h2>List</h2>
+<% @questions.each do |question| %>
+<ul>
+  <li><%= question.title %></li>
+  <li><%= question.tags %></li>
+  <li><%= question.content %></li>
+  <li><%= question.view_cnt %></li>
+  <li><%= question.answer_cnt %></li>
+  <li><%= question.status %></li>
+  <li><%= question.user_id %></li>
+</ul>
+<% end %>
