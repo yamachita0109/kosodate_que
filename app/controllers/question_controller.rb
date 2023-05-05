@@ -5,11 +5,14 @@ class QuestionController < ApplicationController
   end
 
   def create
-    _param = strong_params
+    param = strong_params
     # TODO ログインID
-    _param[:user_id] = 1
-    Question.create(_param)
+    param[:user_id] = 1
+    Question.create! param
     # TODO 詳細へリダイレクト（作成メッセージを添えて）
+  rescue ActiveRecord::RecordInvalid => e
+    show_alert e.record.errors.full_messages
+    redirect_to action: :new
   end
 
   def edit

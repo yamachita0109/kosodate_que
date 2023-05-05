@@ -74,3 +74,4 @@ end
 # https://github.com/heartcombo/devise#starting-with-rails
 gem 'devise'
 gem 'pagy'
+gem 'rails-i18n'

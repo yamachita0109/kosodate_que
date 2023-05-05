@@ -1,6 +1,12 @@
 ja:
   activerecord:
     attributes:
+      question:
+        title: タイトル
+        tags: タグ
+        content: 本文
+        view_cnt: 閲覧数
+        answer_cnt: 回答数
       user:
         confirmation_sent_at: パスワード確認送信時刻
         confirmation_token: パスワード確認用トークン
