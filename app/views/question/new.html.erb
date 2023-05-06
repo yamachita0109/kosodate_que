@@ -5,5 +5,8 @@
   <br />
   content: <%= form.text_field :content %>
   <br />
+  status: <%= form.select :status, [['下書き', 'wip'], ['投稿する', 'open']] %>
+  <br />
+
   <%= form.submit %>
 <% end %>

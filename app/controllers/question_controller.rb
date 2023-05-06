@@ -1,5 +1,5 @@
 class QuestionController < ApplicationController
-  # TODO ログインハンドラー
+  before_action :authenticate_user!
 
   def new
   end
@@ -26,7 +26,7 @@ class QuestionController < ApplicationController
 
   private
   def strong_params
-    params.permit(:title, :tags, :content)
+    params.permit(:title, :tags, :content, :status)
   end
 
 end

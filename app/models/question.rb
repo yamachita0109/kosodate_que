@@ -19,4 +19,7 @@ class Question < ApplicationRecord
     numericality: true
   validates :answer_cnt,
     numericality: true
+  validates :status,
+    presence: true,
+    if: Proc.new { |a| Question.statuses.keys.include?(a) }
 end
