@@ -1,4 +1,6 @@
 class Question < ApplicationRecord
+  belongs_to :users
+
   enum status: {
     wip: 'WIP', # 作業中
     open: 'OPEN', # 質問中

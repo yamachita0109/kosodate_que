@@ -19,6 +19,13 @@ class QuestionController < ApplicationController
   end
 
   def show
+    @question = FindByQuestionService.new.call params[:id]
+    logger.debug @question
+    if @question.del?
+      # TODO 削除されているページを出す
+    end
+  rescue
+    redirect_to root_path
   end
 
   def update

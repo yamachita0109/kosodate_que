@@ -2,6 +2,7 @@
 <%= button_to '作成', new_question_path, method: :get %>
 <% @questions.each do |question| %>
 <ul>
+  <li><%= question.id %></li>
   <li><%= question.title %></li>
   <li><%= question.tags %></li>
   <li><%= question.content %></li>
