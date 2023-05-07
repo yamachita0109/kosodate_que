@@ -7,7 +7,7 @@ class QuestionController < ApplicationController
   def create
     param = strong_params
     # TODO ログインID
-    param[:user_id] = 1
+    param[:user_id] = current_user.id
     Question.create! param
     # TODO 詳細へリダイレクト（作成メッセージを添えて）
   rescue ActiveRecord::RecordInvalid => e

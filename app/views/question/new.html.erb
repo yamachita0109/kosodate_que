@@ -1,9 +1,10 @@
+<h1>Question#new</h1>
 <%= form_with url: question_index_path, local: true do |form| %>
   title: <%= form.text_field :title %>
   <br />
   tags: <%= form.text_field :tags %>
   <br />
-  content: <%= form.text_field :content %>
+  content: <%= form.text_area :content %>
   <br />
   status: <%= form.select :status, [['下書き', 'wip'], ['投稿する', 'open']] %>
   <br />

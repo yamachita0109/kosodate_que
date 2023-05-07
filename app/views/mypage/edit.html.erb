@@ -1,2 +1,19 @@
 <h1>Mypage#edit</h1>
-<p>Find me in app/views/mypage/edit.html.erb</p>
+<%= form_with model: @user_info, url: mypage_update_path, local: true do |form| %>
+  name: <%= form.text_field :name %>
+  <br />
+  birthday: <%= form.date_field :birthday %>
+  <br />
+  text: <%= form.text_area :text %>
+  <br />
+  logo: <%= form.text_field :logo %>
+  <br />
+  twitter_id: <%= form.text_field :twitter_id %>
+  <br />
+  instagram_id: <%= form.text_field :instagram_id %>
+  <br />
+  facebook_id: <%= form.text_field :facebook_id %>
+  <br />
+
+  <%= form.submit %>
+<% end %>

@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   get 'mypage'  => 'mypage#show'
   get 'mypage/edit'  => 'mypage#edit'
   post 'mypage/update'  => 'mypage#update'
+  patch 'mypage/update'  => 'mypage#update'
 end
