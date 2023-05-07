@@ -1,0 +1,26 @@
+<h1>Mypage#show</h1>
+email: <%= current_user.email %>
+<br />
+pass: ⚫︎⚫︎⚫︎⚫︎⚫︎⚫︎⚫︎⚫︎⚫︎
+<br />
+<%= button_to '変更', edit_user_registration_path, method: :get %>
+<hr />
+<%= button_to '登録', mypage_edit_path, method: :get %>
+<% if @user_info.nil? %>
+  登録してください
+<% else %>
+  name: <%= @user_info.name.nil? ? '-' : @user_info.name %>
+  <br />
+  birthday: <%= @user_info.birthday.nil? ? '-' : @user_info.birthday %>
+  <br />
+  text: <%= @user_info.text.nil? ? '-' : @user_info.text %>
+  <br />
+  logo: <%= @user_info.logo.nil? ? '-' : @user_info.logo %>
+  <br />
+  twitter_id: <%= @user_info.twitter_id.nil? ? '-' : @user_info.twitter_id %>
+  <br />
+  instagram_id: <%= @user_info.instagram_id.nil? ? '-' : @user_info.instagram_id %>
+  <br />
+  facebook_id: <%= @user_info.facebook_id.nil? ? '-' : @user_info.facebook_id %>
+<% end %>
+
