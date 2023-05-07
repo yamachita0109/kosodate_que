@@ -8,8 +8,10 @@ Rails.application.routes.draw do
   }
 
   resources :question, only: [:create, :new, :edit, :show, :update]
+
   get 'mypage'  => 'mypage#show'
   get 'mypage/edit'  => 'mypage#edit'
   post 'mypage/update'  => 'mypage#update'
   patch 'mypage/update'  => 'mypage#update'
+  post 'mypage/update/logo'  => 'mypage#update_logo'
 end

@@ -5,14 +5,24 @@ pass: ⚫︎⚫︎⚫︎⚫︎⚫︎⚫︎⚫︎⚫︎⚫︎
 <br />
 <%= button_to '変更', edit_user_registration_path, method: :get %>
 <hr />
+logo: <%= @user_info.logo.nil? ? '-' : @user_info.logo %>
+<% unless @user_info.nil? %>
+  <%= image_tag @user_info.logo, size: '64x64' %>
+<% end %>
+
+<%= form_with url: mypage_update_logo_path, local: true, multipart: true do |form| %>
+  <input name="logo" type="file"  accept="image/*">
+  <%= form.submit %>
+<% end %>
+
+<br />
+<hr />
 <%= button_to '登録', mypage_edit_path, method: :get %>
 name: <%= @user_info.name.nil? ? '-' : @user_info.name %>
 <br />
 birthday: <%= @user_info.birthday.nil? ? '-' : @user_info.birthday %>
 <br />
 text: <%= @user_info.text.nil? ? '-' : @user_info.text %>
-<br />
-logo: <%= @user_info.logo.nil? ? '-' : @user_info.logo %>
 <br />
 twitter_id: <%= @user_info.twitter_id.nil? ? '-' : @user_info.twitter_id %>
 <br />
