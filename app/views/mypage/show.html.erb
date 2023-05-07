@@ -29,3 +29,18 @@ twitter_id: <%= @user_info.twitter_id.nil? ? '-' : @user_info.twitter_id %>
 instagram_id: <%= @user_info.instagram_id.nil? ? '-' : @user_info.instagram_id %>
 <br />
 facebook_id: <%= @user_info.facebook_id.nil? ? '-' : @user_info.facebook_id %>
+
+<hr />
+wip
+<% @questions.each do |question| %>
+<ul>
+  <li><%= question.id %></li>
+  <li><%= question.title %></li>
+  <li><%= question.tags %></li>
+  <li><%= question.content %></li>
+  <li><%= question.view_cnt %></li>
+  <li><%= question.answer_cnt %></li>
+  <li><%= question.status %></li>
+  <li><%= question.user_id %></li>
+</ul>
+<% end %>

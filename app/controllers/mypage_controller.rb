@@ -1,8 +1,11 @@
 class MypageController < ApplicationController
+  include Pagy::Backend
   before_action :authenticate_user!
   before_action :fetch_user_info
 
   def show
+    param = { :user_id => current_user.id, :status => Question.statuses[:wip] }
+    @pagy, @questions = pagy(SearchQuestionService.new.call(param))
   end
 
   def edit
@@ -23,8 +26,7 @@ class MypageController < ApplicationController
     logo = params[:logo]
     path = "public/user/#{current_user.id}.jpg"
     File.binwrite(path, logo.read)
-    param = {}
-    param[:logo] = "/user/#{current_user.id}.jpg"
+    param = { :logo => "/user/#{current_user.id}.jpg" }
     create_or_update param
     show_notice ['登録しました']
     redirect_to action: :show
