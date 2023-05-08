@@ -18,6 +18,8 @@
   <li><%= question.status %></li>
   <li><%= question.user_id %></li>
 </ul>
+<%= button_to '閲覧', question_path(question.id), method: :get %>
+
 <% end %>
 
 <%== pagy_nav(@pagy) %>

@@ -1,2 +1,14 @@
 <h1>Question#show</h1>
-<p>Find me in app/views/question/show.html.erb</p>
+
+title: <%= @question.title.nil? ? '-' : @question.title %>
+<br />
+tags: <%= @question.tags.nil? ? '-' : @question.tags %>
+<br />
+content: <%= @question.content.nil? ? '-' : @question.content %>
+<br />
+status: <%= @question.status.nil? ? '-' : @question.status %>
+<hr />
+Reply
+
+<hr />
+Comment

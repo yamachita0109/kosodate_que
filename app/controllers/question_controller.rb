@@ -9,7 +9,8 @@ class QuestionController < ApplicationController
     # TODO ログインID
     param[:user_id] = current_user.id
     Question.create! param
-    # TODO 詳細へリダイレクト（作成メッセージを添えて）
+    show_notice ['登録しました']
+    redirect_to action: :show
   rescue ActiveRecord::RecordInvalid => e
     show_alert e.record.errors.full_messages
     redirect_to action: :new
@@ -20,7 +21,6 @@ class QuestionController < ApplicationController
 
   def show
     @question = FindByQuestionService.new.call params[:id]
-    logger.debug @question
     if @question.del?
       # TODO 削除されているページを出す
     end
