@@ -16,4 +16,8 @@ Rails.application.routes.draw do
   post 'mypage/update'  => 'mypage#update'
   patch 'mypage/update'  => 'mypage#update'
   post 'mypage/update/logo'  => 'mypage#update_logo'
+
+  namespace 'api' do
+    get 'answer'  => 'answer#get'
+  end
 end

@@ -5,7 +5,7 @@ class QuestionController < ApplicationController
   end
 
   def create
-    param = strong_params
+    param = web_params
     param[:user_id] = current_user.id
     Question.create! param
     show_notice ['登録しました']
@@ -31,7 +31,7 @@ class QuestionController < ApplicationController
   end
 
   def post_answer
-    param = strong_params
+    param = web_params
     param[:user_id] = current_user.id
     param[:question_id] = params[:id]
     Answer.create! param
@@ -48,7 +48,7 @@ class QuestionController < ApplicationController
   end
 
   private
-  def strong_params
+  def web_params
     params.permit(:title, :tags, :content, :status)
   end
 

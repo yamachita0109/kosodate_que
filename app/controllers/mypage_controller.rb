@@ -12,7 +12,7 @@ class MypageController < ApplicationController
   end
 
   def update
-    param = strong_params
+    param = web_params
     create_or_update param
     show_notice ['登録しました']
     redirect_to action: :show
@@ -41,7 +41,7 @@ class MypageController < ApplicationController
     @user_info = info.nil? ? UserInfo.new : info
   end
 
-  def strong_params
+  def web_params
     params.require(:user_info).permit(:name, :birthday, :text, :logo, :twitter_id, :instagram_id, :facebook_id)
   end
 
