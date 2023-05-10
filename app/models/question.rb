@@ -14,7 +14,7 @@ class Question < ApplicationRecord
     length: { maximum: 200 }
   validates :content,
     presence: true,
-    length: { maximum: 1000 }
+    length: { maximum: 2000 }
   validates :view_cnt,
     numericality: true
   validates :answer_cnt,

@@ -6,11 +6,10 @@ class QuestionController < ApplicationController
 
   def create
     param = strong_params
-    # TODO ログインID
     param[:user_id] = current_user.id
     Question.create! param
     show_notice ['登録しました']
-    redirect_to action: :show
+    redirect_to question_path param[:id]
   rescue ActiveRecord::RecordInvalid => e
     show_alert e.record.errors.full_messages
     redirect_to action: :new
@@ -29,6 +28,23 @@ class QuestionController < ApplicationController
   end
 
   def update
+  end
+
+  def post_answer
+    param = strong_params
+    param[:user_id] = current_user.id
+    param[:question_id] = params[:id]
+    Answer.create! param
+    show_notice ['登録しました']
+    redirect_to question_path params[:id]
+  rescue ActiveRecord::RecordInvalid => e
+    show_alert e.record.errors.full_messages
+    redirect_to question_path params[:id]
+  end
+
+  def post_reply
+    show_notice ['登録しました']
+    redirect_to question_path params[:id]
   end
 
   private

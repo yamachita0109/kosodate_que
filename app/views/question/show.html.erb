@@ -12,3 +12,10 @@ Reply
 <div id="vue-reply"></div>
 <hr />
 Comment
+<%= form_with url: question_post_answer_path, local: true do |form| %>
+  <%= form.text_area :content %>
+  <br />
+  <%= form.hidden_field :id, :value => @question.id %>
+
+  <%= form.submit '回答する' %>
+<% end %>
