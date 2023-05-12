@@ -19,5 +19,6 @@ Rails.application.routes.draw do
 
   namespace 'api' do
     get 'answer'  => 'answer#get'
+    post 'reply'  => 'reply#post'
   end
 end
