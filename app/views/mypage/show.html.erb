@@ -35,6 +35,7 @@ wip
 <% @questions.each do |question| %>
 <ul>
   <li><%= question.id %></li>
+  <li><%= link_to '変更', edit_question_path(question.id) %></li>
   <li><%= question.title %></li>
   <li><%= question.tags %></li>
   <li><%= question.content %></li>

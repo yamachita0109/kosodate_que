@@ -1,5 +1,6 @@
 class QuestionController < ApplicationController
   before_action :authenticate_user!, except: [:show]
+  before_action :fetch_question_info
 
   def new
   end
@@ -7,19 +8,23 @@ class QuestionController < ApplicationController
   def create
     param = web_params
     param[:user_id] = current_user.id
-    Question.create! param
+    q = Question.create! param
     show_notice ['登録しました']
-    redirect_to question_path param[:id]
+    redirect_to question_path q.id
   rescue ActiveRecord::RecordInvalid => e
     show_alert e.record.errors.full_messages
     redirect_to action: :new
   end
 
   def edit
+    @question = FindByQuestionService.new.call params[:id]
+    if @question.nil?
+      redirect_to question_path params[:id]
+      return
+    end
   end
 
   def show
-    @question = FindByQuestionService.new.call params[:id]
     if @question.del?
       # TODO 削除されているページを出す
     end
@@ -27,7 +32,18 @@ class QuestionController < ApplicationController
     redirect_to root_path
   end
 
+  # TODO BEST answer
   def update
+    @question = FindByQuestionService.new.call params[:id]
+    if @question.nil?
+      return
+    end
+    @question.update! web_params
+    show_notice ['更新しました']
+    redirect_to action: :show
+  rescue ActiveRecord::RecordInvalid => e
+    show_alert e.record.errors.full_messages
+    redirect_to action: :edit
   end
 
   def post_answer
@@ -35,7 +51,7 @@ class QuestionController < ApplicationController
     param[:user_id] = current_user.id
     param[:question_id] = params[:id]
     Answer.create! param
-    show_notice ['登録しました']
+    show_notice ['投稿しました']
     redirect_to question_path params[:id]
   rescue ActiveRecord::RecordInvalid => e
     show_alert e.record.errors.full_messages
@@ -48,8 +64,13 @@ class QuestionController < ApplicationController
   end
 
   private
+  def fetch_question_info
+    info = Question.find_by(id: params[:id])
+    @question = info.nil? ? Question.new : info
+  end
+
   def web_params
-    params.permit(:title, :tags, :content, :status)
+    params.require(:question).permit(:title, :tags, :content, :status)
   end
 
 end

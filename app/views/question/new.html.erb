@@ -1,5 +1,5 @@
 <h1>Question#new</h1>
-<%= form_with url: question_index_path, local: true do |form| %>
+<%= form_with model: @question, url: question_index_path, local: true do |form| %>
   title: <%= form.text_field :title %>
   <br />
   tags: <%= form.text_field :tags %>

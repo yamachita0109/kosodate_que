@@ -1,5 +1,8 @@
 <h1>Question#show</h1>
-
+<% if current_user.id == @question.user_id %>
+  <%= link_to '変更', edit_question_path(@question.id) %>
+<% end %>
+<hr />
 title: <%= @question.title.nil? ? '-' : @question.title %>
 <br />
 tags: <%= @question.tags.nil? ? '-' : @question.tags %>

@@ -14,7 +14,7 @@ class MypageController < ApplicationController
   def update
     param = web_params
     create_or_update param
-    show_notice ['登録しました']
+    show_notice ['更新しました']
     redirect_to action: :show
   rescue ActiveRecord::RecordInvalid => e
     show_alert e.record.errors.full_messages
@@ -28,7 +28,7 @@ class MypageController < ApplicationController
     File.binwrite(path, logo.read)
     param = { :logo => "/user/#{current_user.id}.jpg" }
     create_or_update param
-    show_notice ['登録しました']
+    show_notice ['更新しました']
     redirect_to action: :show
   rescue ActiveRecord::RecordInvalid => e
     show_alert e.record.errors.full_messages
