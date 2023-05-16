@@ -83,3 +83,4 @@ coverage
 !/public/user/.keep
 /app/javascript/dist/*
 !/app/javascript/dist/.keep
+*.gz

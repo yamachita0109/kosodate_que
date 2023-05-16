@@ -1,0 +1,18 @@
+<p><%= @display_name %> 様
+<p>パパママQAに質問が投稿されました。</p>
+
+<pre>
+=========================
+質問内容
+=========================
+<%= @q.title %>
+<%= @q.content %>
+
+▼質問の確認はこちらから
+<%= question_url(@q.id) %>
+</pre>
+
+<hr />
+パパママQA
+https://papamamaqa.com
+<hr />

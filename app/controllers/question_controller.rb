@@ -8,9 +8,10 @@ class QuestionController < ApplicationController
   def create
     param = web_params
     param[:user_id] = current_user.id
-    q = Question.create! param
-    show_notice ['登録しました']
-    redirect_to question_path q.id
+    question = Question.create! param
+    UserMailer.send_post_question(question).deliver_now if question.open?
+    show_notice [question.open? ? '投稿しました' : '下書き登録しました']
+    redirect_to question_path question.id
   rescue ActiveRecord::RecordInvalid => e
     show_alert e.record.errors.full_messages
     redirect_to action: :new
@@ -41,6 +42,7 @@ class QuestionController < ApplicationController
       return
     end
     @question.update! web_params
+    UserMailer.send_post_question(question).deliver_now if question.open?
     show_notice ['更新しました']
     redirect_to action: :show
   rescue ActiveRecord::RecordInvalid => e
