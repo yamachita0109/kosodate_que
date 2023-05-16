@@ -12,6 +12,15 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <!-- Google Analytics タグを埋め込む -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=todo_tracking_id"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'todo_tracking_id');
+    </script>
   </head>
 
   <body>
