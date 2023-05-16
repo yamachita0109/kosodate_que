@@ -1,3 +1,7 @@
+<% content_for :title, @question.title %>
+<% content_for :description, @question.content %>
+<% content_for :keywords, @question.tags %>
+
 <h1>Question#show</h1>
 <% if current_user.id == @question.user_id %>
   <%= link_to '変更', edit_question_path(@question.id) %>

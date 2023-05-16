@@ -1,3 +1,5 @@
+<% content_for :title, '質問編集' %>
+
 <h1>Question#edit</h1>
 <%= form_with model: @question, url: question_path, local: true, method: :put do |form| %>
   title: <%= form.text_field :title %>

@@ -1,3 +1,5 @@
+<% content_for :title, 'マイページ編集' %>
+
 <h1>Mypage#edit</h1>
 <%= form_with model: @user_info, url: mypage_update_path, local: true do |form| %>
   name: <%= form.text_field :name %>
