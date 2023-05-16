@@ -75,3 +75,4 @@ end
 gem 'devise'
 gem 'pagy'
 gem 'rails-i18n'
+gem 'sitemap_generator'
