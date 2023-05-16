@@ -27,7 +27,9 @@ class QuestionController < ApplicationController
   def show
     if @question.del?
       # TODO 削除されているページを出す
+      return 
     end
+    @question.increment!(:view_cnt) unless current_user.id == @question.user_id
   rescue
     redirect_to root_path
   end
@@ -47,10 +49,11 @@ class QuestionController < ApplicationController
   end
 
   def post_answer
-    param = web_params
+    param = answer_params
     param[:user_id] = current_user.id
     param[:question_id] = params[:id]
     Answer.create! param
+    @question.increment!(:answer_cnt)
     show_notice ['投稿しました']
     redirect_to question_path params[:id]
   rescue ActiveRecord::RecordInvalid => e
@@ -73,4 +76,7 @@ class QuestionController < ApplicationController
     params.require(:question).permit(:title, :tags, :content, :status)
   end
 
+  def answer_params
+    params.permit(:content)
+  end
 end
