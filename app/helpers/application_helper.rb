@@ -11,7 +11,11 @@ module ApplicationHelper
   end
 
   def site_description(page_description = '育児をしているパパママ必見の質問と回答のコミュニティサイトです。育児の悩みや疑問に答えたり、自分の育児の経験を共有したりできます。')
-    page_description
+    if page_description.length > 120
+      page_description[0...120] + "..."
+    else
+      page_description
+    end
   end
 
   def site_keywords(page_keywords = '子育て,育児,質問,相談')
