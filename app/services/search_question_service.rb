@@ -13,6 +13,9 @@ class SearchQuestionService
     if @param[:status]
       res = res.where(status: @param[:status])
     end
+    if @param[:text]
+      res = res.where('CONCAT(title, tags) LIKE ?', "%#{@param[:text]}%")
+    end
     res
   end
 end
