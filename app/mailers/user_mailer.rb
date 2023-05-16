@@ -11,14 +11,18 @@ class UserMailer < ApplicationMailer
     @a = answer
     @u = User.detail(question.user_id)
     @display_name = display_name
-    mail(to: @u.email, subject: '【パパママQA】質問にコメントがきました')
+    mail(to: @u.email, subject: '【パパママQA】質問にコメントされました')
   end
 
   def send_post_reply(answer, reply)
-    @user = @recipient
-    mail(to: @u.email, subject: 'send_post_reply_from')
+    @a = answer
+    @r = reply
+    @u = User.detail(answer.user_id)
+    @display_name = display_name
+    mail(to: @u.email, subject: '【パパママQA】リプライされました')
   end
 
+  # TODO best answer
   def send_best_answer
     @user = @recipient
     mail(to: @u.email, subject: 'send_best_answer')

@@ -64,11 +64,6 @@ class QuestionController < ApplicationController
     redirect_to question_path params[:id]
   end
 
-  def post_reply
-    show_notice ['登録しました']
-    redirect_to question_path params[:id]
-  end
-
   private
   def fetch_question_info
     info = Question.find_by(id: params[:id])
