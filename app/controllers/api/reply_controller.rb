@@ -7,7 +7,8 @@ module Api
       param[:user_id] = current_user.id
       answer = Answer.find(param[:answer_id])
       reply = Reply.create! param
-      UserMailer.send_post_reply(answer, reply).deliver_now
+      question = Question.find answer.question_id
+      UserMailer.send_post_reply(question, answer, reply).deliver_now
       render json: {result: 'ok'}, status: :ok
     end
 

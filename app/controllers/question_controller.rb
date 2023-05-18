@@ -11,15 +11,14 @@ class QuestionController < ApplicationController
     question = Question.create! param
     UserMailer.send_post_question(question).deliver_now if question.open?
     show_notice [question.open? ? '投稿しました' : '下書き登録しました']
-    redirect_to question_path question.id
+    redirect_to question_path question.hashid
   rescue ActiveRecord::RecordInvalid => e
     show_alert e.record.errors.full_messages
     redirect_to action: :new
   end
 
   def edit
-    @question = FindByQuestionService.new.call params[:id]
-    if @question.nil?
+    if @question.user_id != current_user.id
       redirect_to question_path params[:id]
       return
     end
@@ -37,12 +36,13 @@ class QuestionController < ApplicationController
 
   # TODO BEST answer
   def update
-    @question = FindByQuestionService.new.call params[:id]
-    if @question.nil?
+    # @question = Question.find web_params[:question_id]
+    if @question.user_id != current_user.id
+      redirect_to question_path params[:id]
       return
     end
     @question.update! web_params
-    UserMailer.send_post_question(question).deliver_now if question.open?
+    UserMailer.send_post_question(@question).deliver_now if @question.open?
     show_notice ['更新しました']
     redirect_to action: :show
   rescue ActiveRecord::RecordInvalid => e
@@ -53,7 +53,7 @@ class QuestionController < ApplicationController
   def post_answer
     param = answer_params
     param[:user_id] = current_user.id
-    param[:question_id] = params[:id]
+    param[:question_id] = @question.id
     answer = Answer.create! param
     @question.increment!(:answer_cnt)
     UserMailer.send_post_answer(@question, answer).deliver_now
@@ -66,7 +66,7 @@ class QuestionController < ApplicationController
 
   private
   def fetch_question_info
-    info = Question.find_by(id: params[:id])
+    info = Question.find_by_hashid params[:id]
     @question = info.nil? ? Question.new : info
   end
 

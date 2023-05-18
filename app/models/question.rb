@@ -1,4 +1,6 @@
 class Question < ApplicationRecord
+  include Hashid::Rails
+
   enum status: {
     wip: 'WIP', # 作業中
     open: 'OPEN', # 質問中

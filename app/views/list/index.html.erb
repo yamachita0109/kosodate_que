@@ -16,7 +16,7 @@
   <% @questions.each do |question| %>
   <ul>
     <li><%= question.id %></li>
-    <li><%= link_to '変更', edit_question_path(question.id) %></li>
+    <li><%= link_to '変更', edit_question_path(question.hashid) %></li>
     <li><%= question.title %></li>
     <li><%= question.tags %></li>
     <li><%= question.content %></li>
@@ -25,7 +25,7 @@
     <li><%= question.status %></li>
     <li><%= question.user_id %></li>
   </ul>
-  <%= link_to '閲覧', question_path(question.id) %>
+  <%= link_to '閲覧', question_path(question.hashid) %>
   <% end %>
 
   <%== pagy_nav(@pagy) %>

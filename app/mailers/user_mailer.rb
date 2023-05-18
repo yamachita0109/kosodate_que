@@ -14,7 +14,8 @@ class UserMailer < ApplicationMailer
     mail(to: @u.email, subject: '【パパママQA】質問にコメントされました')
   end
 
-  def send_post_reply(answer, reply)
+  def send_post_reply(question, answer, reply)
+    @q = question
     @a = answer
     @r = reply
     @u = User.find(answer.user_id)
