@@ -1,0 +1,11 @@
+<h1>Profile#show</h1>
+
+name: <%= @user.name.nil? ? '-' : @user.name %>
+<br />
+text: <%= @user.content.nil? ? '-' : @user.content %>
+<br />
+twitter_id: <%= @user.twitter_id.nil? ? '-' : @user.twitter_id %>
+<br />
+instagram_id: <%= @user.instagram_id.nil? ? '-' : @user.instagram_id %>
+<br />
+facebook_id: <%= @user.facebook_id.nil? ? '-' : @user.facebook_id %>

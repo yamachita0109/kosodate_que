@@ -18,6 +18,10 @@ class QuestionController < ApplicationController
   end
 
   def edit
+    if @question.id.nil?
+      render_404
+      return
+    end
     if @question.user_id != current_user.id
       redirect_to question_path params[:id]
       return
@@ -25,10 +29,16 @@ class QuestionController < ApplicationController
   end
 
   def show
+    if @question.id.nil?
+      render_404
+      return
+    end
     if @question.del?
       # TODO 削除されているページを出す
-      return 
+      render_404
+      return
     end
+    @user = User.find @question.user_id
     @question.increment!(:view_cnt) unless current_user.id == @question.user_id
   rescue
     redirect_to root_path
@@ -36,7 +46,6 @@ class QuestionController < ApplicationController
 
   # TODO BEST answer
   def update
-    # @question = Question.find web_params[:question_id]
     if @question.user_id != current_user.id
       redirect_to question_path params[:id]
       return

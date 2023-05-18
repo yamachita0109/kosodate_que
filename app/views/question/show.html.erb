@@ -14,6 +14,9 @@ tags: <%= @question.tags.nil? ? '-' : @question.tags %>
 content: <%= @question.content.nil? ? '-' : @question.content %>
 <br />
 status: <%= @question.status.nil? ? '-' : @question.status %>
+<br />
+<%= button_to 'プロフィール', profile_path(@user.hashid), method: :get %>
+
 <hr />
 Reply
 <div id="vue-reply"></div>

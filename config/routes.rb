@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'list#index'
+
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions',
@@ -11,6 +12,8 @@ Rails.application.routes.draw do
   post 'question/post_answer'  => 'question#post_answer'
   post 'question/post_reply'  => 'question#post_reply'
 
+  resources :profile, only: [:show]
+
   get 'mypage'  => 'mypage#show'
   get 'mypage/edit'  => 'mypage#edit'
   post 'mypage/update'  => 'mypage#update'
@@ -21,4 +24,6 @@ Rails.application.routes.draw do
     get 'answer'  => 'answer#get'
     post 'reply'  => 'reply#post'
   end
+
+  # get '*path', controller: 'application', action: 'render_404'
 end
