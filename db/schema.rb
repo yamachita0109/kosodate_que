@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_03_135345) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_03_135331) do
   create_table "answers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "question_id", null: false
     t.text "content"
@@ -42,19 +42,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_03_135345) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_infos", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.string "name"
-    t.date "birthday"
-    t.text "text"
-    t.string "logo"
-    t.string "twitter_id"
-    t.string "instagram_id"
-    t.string "facebook_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -65,6 +52,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_03_135345) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
+    t.string "name"
+    t.text "content"
+    t.string "logo"
+    t.string "twitter_id"
+    t.string "instagram_id"
+    t.string "facebook_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

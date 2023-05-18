@@ -1,10 +1,8 @@
 <% content_for :title, 'マイページ編集' %>
 
 <h1>Mypage#edit</h1>
-<%= form_with model: @user_info, url: mypage_update_path, local: true do |form| %>
+<%= form_with model: current_user, url: mypage_update_path, local: true do |form| %>
   name: <%= form.text_field :name %>
-  <br />
-  birthday: <%= form.date_field :birthday %>
   <br />
   text: <%= form.text_area :text %>
   <br />

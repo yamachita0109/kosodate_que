@@ -7,9 +7,9 @@ pass: ⚫︎⚫︎⚫︎⚫︎⚫︎⚫︎⚫︎⚫︎⚫︎
 <br />
 <%= button_to '変更', edit_user_registration_path, method: :get %>
 <hr />
-logo: <%= @user_info.logo.nil? ? '-' : @user_info.logo %>
-<% unless @user_info.nil? %>
-  <%= image_tag @user_info.logo, size: '64x64' %>
+logo: <%= current_user.logo.nil? ? '-' : current_user.logo %>
+<% unless current_user.logo.nil? %>
+  <%= image_tag current_user.logo, size: '64x64' %>
 <% end %>
 
 <%= form_with url: mypage_update_logo_path, local: true, multipart: true do |form| %>
@@ -20,17 +20,15 @@ logo: <%= @user_info.logo.nil? ? '-' : @user_info.logo %>
 <br />
 <hr />
 <%= button_to '登録', mypage_edit_path, method: :get %>
-name: <%= @user_info.name.nil? ? '-' : @user_info.name %>
+name: <%= current_user.name.nil? ? '-' : current_user.name %>
 <br />
-birthday: <%= @user_info.birthday.nil? ? '-' : @user_info.birthday %>
+text: <%= current_user.content.nil? ? '-' : current_user.content %>
 <br />
-text: <%= @user_info.text.nil? ? '-' : @user_info.text %>
+twitter_id: <%= current_user.twitter_id.nil? ? '-' : current_user.twitter_id %>
 <br />
-twitter_id: <%= @user_info.twitter_id.nil? ? '-' : @user_info.twitter_id %>
+instagram_id: <%= current_user.instagram_id.nil? ? '-' : current_user.instagram_id %>
 <br />
-instagram_id: <%= @user_info.instagram_id.nil? ? '-' : @user_info.instagram_id %>
-<br />
-facebook_id: <%= @user_info.facebook_id.nil? ? '-' : @user_info.facebook_id %>
+facebook_id: <%= current_user.facebook_id.nil? ? '-' : current_user.facebook_id %>
 
 <hr />
 wip
