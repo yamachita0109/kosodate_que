@@ -31,6 +31,12 @@ ja:
         unconfirmed_email: 未確認Eメール
         unlock_token: ロック解除用トークン
         updated_at: 更新日
+        name: 名前
+        content: 自己紹介
+        logo: ロゴ
+        twitter_id: 'Twitter ID'
+        instagram_id: 'Instagram ID'
+        facebook_id: 'Facebook ID'
     models:
       user: ユーザー
   devise:

@@ -7,9 +7,7 @@ class User < ApplicationRecord
 
   validates :name,
     length: { maximum: 200 }
-  validates :birthday,
-    length: { maximum: 200 }
-  validates :text,
+  validates :content,
     length: { maximum: 1000 }
   validates :logo,
     length: { maximum: 200 }
