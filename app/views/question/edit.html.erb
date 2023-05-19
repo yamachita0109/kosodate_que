@@ -2,6 +2,18 @@
 
 <h1>Question#edit</h1>
 <%= form_with model: @question, url: question_path, local: true, method: :put do |form| %>
+  <%= form.hidden_field :status, :value => 'done' %>
+  <%= form.submit '解決' %>
+  <br />
+  <p>ベストアンサー</p>
+  <% @answer.each do |answer| %>
+    <%= form.radio_button(:answer_id, answer.id) %>
+    <%= form.label(:answer_id, answer.content ,value: answer.id)  %>
+    <br />
+  <% end %>
+<% end %>
+<hr />
+<%= form_with model: @question, url: question_path, local: true, method: :put do |form| %>
   title: <%= form.text_field :title %>
   <br />
   tags: <%= form.text_field :tags %>

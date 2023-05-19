@@ -3,6 +3,7 @@
     v-for="answer in answers"
     :key="answer.id"
   >
+    {{ answer.is_best_answer ? 'ベストアンサー' : '' }}
     {{ answer.content }}
     <br />
       <div

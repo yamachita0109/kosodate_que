@@ -1,6 +1,6 @@
 class QuestionController < ApplicationController
   before_action :authenticate_user!, except: [:show]
-  before_action :fetch_question_info
+  before_action :fetch_info
 
   def new
   end
@@ -26,6 +26,7 @@ class QuestionController < ApplicationController
       redirect_to question_path params[:id]
       return
     end
+    @answer = Answer.where(question_id: @question.id)
   end
 
   def show
@@ -38,19 +39,23 @@ class QuestionController < ApplicationController
       render_404
       return
     end
-    @user = User.find @question.user_id
     @question.increment!(:view_cnt) unless current_user.id == @question.user_id
   rescue
     redirect_to root_path
   end
 
-  # TODO BEST answer
   def update
     if @question.user_id != current_user.id
       redirect_to question_path params[:id]
       return
     end
-    @question.update! web_params
+    param = web_params
+    if param[:answer_id].present?
+      answer = Answer.find_by(id: param[:answer_id], question_id: @question.id)
+      answer.update!({:is_best_answer => true})
+      param.delete :answer_id
+    end
+    @question.update! param
     UserMailer.send_post_question(@question).deliver_now if @question.open?
     show_notice ['更新しました']
     redirect_to action: :show
@@ -74,13 +79,14 @@ class QuestionController < ApplicationController
   end
 
   private
-  def fetch_question_info
+  def fetch_info
     info = Question.find_by_hashid params[:id]
     @question = info.nil? ? Question.new : info
+    @user = User.find_by(id: @question.user_id)
   end
 
   def web_params
-    params.require(:question).permit(:title, :tags, :content, :status)
+    params.require(:question).permit(:title, :tags, :content, :status, :answer_id)
   end
 
   def answer_params
