@@ -6,15 +6,21 @@
     {{ answer.is_best_answer ? 'ベストアンサー' : '' }}
     {{ answer.content }}
     <br />
-      <div
-        v-for="reply in answer.replies"
-        :key="reply.id"
-      >
-        ・{{ reply.content }}
-      </div>
-    <textarea v-model="repliesFrom[answer.id]"></textarea>
-    <br />
-    <button type="button" @click="clickReply(answer.id)">返信</button>
+    <div
+      v-for="reply in answer.replies"
+      :key="reply.id"
+    >
+      ・{{ reply.content }}
+    </div>
+    <template
+      v-if="qstatus == 'open'"
+    >
+      <textarea
+        v-model="repliesFrom[answer.id]"
+      ></textarea>
+      <br />
+      <button type="button" @click="clickReply(answer.id)">返信</button>
+    </template>
     <hr />
   </div>
 </template>
@@ -31,12 +37,14 @@ export default defineComponent({
     return {
       id: location.pathname.split('/').pop(),
       answers: [] as Answer[],
+      qstatus: '' as string,
       repliesFrom: [],
     }
   },
   async created() {
     const res = await this.getAnswer()
     this.answers = res.data.rows
+    this.qstatus = res.data.status
   },
   methods: {
     async clickReply(id) {

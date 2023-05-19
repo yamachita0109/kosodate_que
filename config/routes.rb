@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :question, only: [:create, :new, :edit, :show, :update]
   post 'question/post_answer'  => 'question#post_answer'
   post 'question/post_reply'  => 'question#post_reply'
+  get 'question' => redirect('/')
 
   resources :profile, only: [:show]
 

@@ -21,11 +21,13 @@ status: <%= @question.status.nil? ? '-' : @question.status %>
 Reply
 <div id="vue-reply"></div>
 <hr />
-Comment
-<%= form_with url: question_post_answer_path, local: true do |form| %>
-  <%= form.text_area :content %>
-  <br />
-  <%= form.hidden_field :id, :value => @question.hashid %>
+<% if @question.open? %>
+  Comment
+  <%= form_with url: question_post_answer_path, local: true do |form| %>
+    <%= form.text_area :content %>
+    <br />
+    <%= form.hidden_field :id, :value => @question.hashid %>
 
-  <%= form.submit 'コメント' %>
+    <%= form.submit 'コメント' %>
+  <% end %>
 <% end %>

@@ -1,7 +1,13 @@
 module Api
   class AnswerController < ApplicationController
     def get
-      res = SearchAnswerService.new.call api_param
+      param = api_param
+      if param[:question_id].present?
+        # 暗号化されているため詰め直す
+        question = Question.find_by_hashid param[:question_id]
+        param[:question_id] = question.id
+      end
+      res = SearchAnswerService.new.call param
       rows = res.map {|r| r.id}.uniq.map {|id|
         data = res.filter {|r| r.id == id}
         {
@@ -16,7 +22,7 @@ module Api
             [] : data.map {|d| {id: d.reply_id, user_id: d.reply_user_id, content: d.reply_content}}
         }
       }
-      render json: {rows: rows}, status: :ok
+      render json: {rows: rows, status: question.status}, status: :ok
     end
     private
     def api_param
