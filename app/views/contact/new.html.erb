@@ -1,0 +1,10 @@
+<h1>Contact#new</h1>
+
+<%= form_with local: true do |form| %>
+  email: <%= form.email_field :email, :value => current_user.email %>
+  <br />
+  content: <%= form.text_area :content %>
+  <br />
+
+  <%= form.submit %>
+<% end %>

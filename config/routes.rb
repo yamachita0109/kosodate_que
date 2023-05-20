@@ -15,6 +15,9 @@ Rails.application.routes.draw do
 
   resources :profile, only: [:show]
 
+  get 'contact'  => 'contact#new'
+  post 'contact'  => 'contact#post'
+
   get 'mypage'  => 'mypage#show'
   get 'mypage/edit'  => 'mypage#edit'
   post 'mypage/update'  => 'mypage#update'

@@ -84,3 +84,4 @@ coverage
 /app/javascript/dist/*
 !/app/javascript/dist/.keep
 *.gz
+.env

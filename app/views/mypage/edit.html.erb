@@ -4,7 +4,7 @@
 <%= form_with model: current_user, url: mypage_update_path, local: true do |form| %>
   name: <%= form.text_field :name %>
   <br />
-  text: <%= form.text_area :text %>
+  text: <%= form.text_area :content %>
   <br />
   twitter_id: <%= form.text_field :twitter_id %>
   <br />
