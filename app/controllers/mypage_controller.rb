@@ -4,7 +4,9 @@ class MypageController < ApplicationController
 
   def show
     param = { :user_id => current_user.id, :status => Question.statuses[:wip] }
-    @pagy, @questions = pagy(SearchQuestionService.new.call(param))
+    questions = SearchQuestionService.new.call(param)
+    @pagy, @questions = pagy(questions)
+    @total_count = questions.count
   end
 
   def edit

@@ -6,6 +6,8 @@ class ListController < ApplicationController
       :status => [Question.statuses[:open], Question.statuses[:done]],
       :text => params[:text]
     }
-    @pagy, @questions = pagy(SearchQuestionService.new.call(param))
+    questions = SearchQuestionService.new.call(param)
+    @pagy, @questions = pagy(questions)
+    @total_count = questions.count
   end
 end

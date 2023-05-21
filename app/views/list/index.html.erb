@@ -13,6 +13,7 @@
 <% end %>
 <hr />
 <% if @questions.present? %>
+  <%= @total_count %>件
   <% @questions.each do |question| %>
   <ul>
     <li><%= question.id %></li>
