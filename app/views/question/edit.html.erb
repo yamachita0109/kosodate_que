@@ -16,11 +16,12 @@
 <%= form_with model: @question, url: question_path, local: true, method: :put do |form| %>
   title: <%= form.text_field :title %>
   <br />
-  tags: <%= form.text_field :tags %>
+  tags: <div id="vue-tags"></div>
+  <%= form.hidden_field :tags %>
   <br />
   content: <%= form.text_area :content %>
   <br />
-  status: <%= form.select :status, [['下書き', 'wip'], ['投稿する', 'open'], ['解決にする', 'done'], ['取り下げる', 'del']] %>
+  status: <%= form.select :status, [['下書き', 'wip'], ['投稿する', 'open'], ['取り下げる', 'del']] %>
   <br />
   <%= form.submit %>
 <% end %>

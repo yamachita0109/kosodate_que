@@ -4,7 +4,8 @@
 <%= form_with model: @question, url: question_index_path, local: true do |form| %>
   title: <%= form.text_field :title %>
   <br />
-  tags: <%= form.text_field :tags %>
+  tags: <div id="vue-tags"></div>
+  <%= form.hidden_field :tags %>
   <br />
   content: <%= form.text_area :content %>
   <br />

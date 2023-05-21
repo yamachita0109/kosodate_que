@@ -7,6 +7,8 @@ const env = process.env.NODE_ENV || 'development';
 module.exports = {
   entry: {
     'question/show/main': './app/javascript/views/question/show/main.ts',
+    'question/edit/main': './app/javascript/views/question/edit/main.ts',
+    'question/new/main': './app/javascript/views/question/new/main.ts',
   },
   output: {
     filename: '[name].js',

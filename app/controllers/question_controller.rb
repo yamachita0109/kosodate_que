@@ -26,6 +26,10 @@ class QuestionController < ApplicationController
       redirect_to question_path params[:id]
       return
     end
+    if @question.done?
+      redirect_to question_path params[:id]
+      return
+    end
     @answer = Answer.where(question_id: @question.id)
   end
 
