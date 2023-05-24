@@ -17,9 +17,19 @@ module Api
           good_cnt: data.first.good_cnt,
           is_best_answer: data.first.is_best_answer,
           user_id: data.first.user_id,
+          user_name: data.first.answer_user_name,
+          user_logo: data.first.answer_user_logo,
           created_at: data.first.created_at,
           replies: data.first.reply_id.nil? ?
-            [] : data.map {|d| {id: d.reply_id, user_id: d.reply_user_id, content: d.reply_content}}.sort_by{|d| d[:id] }
+            [] : data.map {|d|
+              {
+                id: d.reply_id,
+                user_id: d.reply_user_id,
+                user_name: d.reply_user_name,
+                user_logo: d.reply_user_logo,
+                content: d.reply_content,
+              }
+            }.sort_by{|d| d[:id] }
         }
       }
       render json: {rows: rows, status: question.status}, status: :ok

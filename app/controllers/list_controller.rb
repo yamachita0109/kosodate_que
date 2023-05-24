@@ -9,6 +9,6 @@ class ListController < ApplicationController
     }
     questions = SearchQuestionService.new.call(param)
     @pagy, @questions = pagy(questions)
-    @total_count = questions.count
+    @total_count = questions.count(:id)
   end
 end

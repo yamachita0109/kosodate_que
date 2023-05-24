@@ -1,3 +1,4 @@
+  # require 'RMagick'
 class MypageController < ApplicationController
   include Pagy::Backend
   before_action :authenticate_user!
@@ -6,7 +7,7 @@ class MypageController < ApplicationController
     param = { :user_id => current_user.id, :status => Question.statuses[:wip] }
     questions = SearchQuestionService.new.call(param)
     @pagy, @questions = pagy(questions)
-    @total_count = questions.count
+    @total_count = questions.count(:id)
   end
 
   def edit
@@ -28,6 +29,9 @@ class MypageController < ApplicationController
     data = decode(uri)
     path = "public/user/#{current_user.hashid}.jpg"
     File.binwrite(path, data)
+    img = Magick::ImageList.new(path)
+    new_img = img.resize_to_fit(300, 300)
+    new_img.write(path)
     param = { :logo => "/user/#{current_user.hashid}.jpg" }
     User.find(current_user.id).update! param
     show_notice ['ロゴ画像を登録しました']

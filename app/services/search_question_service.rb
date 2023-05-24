@@ -7,6 +7,15 @@ class SearchQuestionService
   private
   def search
     res = Question.all
+      .joins('INNER JOIN users ON questions.user_id = users.id ')
+      .select('
+        questions.*
+        , users.name AS user_name
+        , users.logo AS user_logo
+        , users.twitter_id AS user_twitter_id
+        , users.instagram_id AS user_instagram_id
+        , users.facebook_id AS user_facebook_id
+      ')
     if @param[:user_id].present?
       res = res.where(user_id: @param[:user_id])
     end

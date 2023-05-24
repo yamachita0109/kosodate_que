@@ -30,6 +30,11 @@
     <li><%= question.answer_cnt %></li>
     <li><%= question.status %></li>
     <li><%= question.user_id %></li>
+    <li><%= question.user_name %></li>
+    <li><%= image_tag question.user_logo, size: '64x64' %></li>
+    <li><%= question.user_twitter_id %></li>
+    <li><%= question.user_instagram_id %></li>
+    <li><%= question.user_facebook_id %></li>
   </ul>
   <%= link_to '閲覧', question_path(question.hashid) %>
   <% end %>
