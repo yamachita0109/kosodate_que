@@ -7,6 +7,7 @@ class SearchQuestionService
   private
   def search
     res = Question.all
+      .order(id: 'DESC')
       .joins('INNER JOIN users ON questions.user_id = users.id ')
       .select('
         questions.*
@@ -35,7 +36,6 @@ class SearchQuestionService
       res = res.where(status: Question.statuses[:open])
     end
 
-    res = res.order(:id)
     res
   end
 end
