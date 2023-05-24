@@ -19,7 +19,7 @@ module Api
           user_id: data.first.user_id,
           created_at: data.first.created_at,
           replies: data.first.reply_id.nil? ?
-            [] : data.map {|d| {id: d.reply_id, user_id: d.reply_user_id, content: d.reply_content}}
+            [] : data.map {|d| {id: d.reply_id, user_id: d.reply_user_id, content: d.reply_content}}.sort_by{|d| d[:id] }
         }
       }
       render json: {rows: rows, status: question.status}, status: :ok

@@ -9,7 +9,12 @@
 <hr />
 <%= form_with local: true, method: :get do |form| %>
   <%= form.text_field :text, :value => params[:text] %>
-  <%= form.submit '検索する' %>
+  <%= form.select :filter,
+    [['新着', ''], ['未回答', 'no_answer'], ['解決済', 'done'], ['未解決', 'open']],
+    { selected: params[:filter] },
+    :onchange => 'submit(this.form)'
+  %>
+  <button type="submit">検索する</button>
 <% end %>
 <hr />
 <% if @questions.present? %>
