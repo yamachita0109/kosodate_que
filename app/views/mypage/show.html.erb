@@ -13,8 +13,7 @@ logo: <%= current_user.logo.nil? ? '-' : current_user.logo %>
 <% end %>
 
 <%= form_with url: mypage_update_logo_path, local: true, multipart: true do |form| %>
-  <input name="logo" type="file"  accept="image/*">
-  <%= form.submit %>
+  <div id="vue-img-upload"></div>
 <% end %>
 
 <br />

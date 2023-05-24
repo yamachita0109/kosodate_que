@@ -6,3 +6,4 @@ import "controllers"
 import './dist/question/show/main.js'
 import './dist/question/edit/main.js'
 import './dist/question/new/main.js'
+import './dist/mypage/show/main.js'

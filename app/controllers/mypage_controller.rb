@@ -23,13 +23,14 @@ class MypageController < ApplicationController
   end
 
   def update_logo
-    # TODO 画像サイズを圧縮
     logo = params[:logo]
-    path = "public/user/#{current_user.id}.jpg"
-    File.binwrite(path, logo.read)
-    param = { :logo => "/user/#{current_user.id}.jpg" }
+    uri = URI.parse(logo)
+    data = decode(uri)
+    path = "public/user/#{current_user.hashid}.jpg"
+    File.binwrite(path, data)
+    param = { :logo => "/user/#{current_user.hashid}.jpg" }
     User.find(current_user.id).update! param
-    show_notice ['更新しました']
+    show_notice ['ロゴ画像を登録しました']
     redirect_to action: :show
   rescue ActiveRecord::RecordInvalid => e
     show_alert e.record.errors.full_messages
@@ -39,5 +40,11 @@ class MypageController < ApplicationController
   private
   def web_params
     params.require(:user).permit(:name, :content, :logo, :twitter_id, :instagram_id, :facebook_id)
+  end
+
+  def decode(uri)
+    opaque = uri.opaque
+    data = opaque[opaque.index(",") + 1, opaque.size]
+    Base64.decode64(data)
   end
 end
