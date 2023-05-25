@@ -3,7 +3,7 @@ class UserMailer < ApplicationMailer
     @q = question
     @u = User.find(question.user_id)
     @display_name = display_name
-    mail(to: @u.email, subject: '【パパママQA】質問を投稿しました')
+    mail(to: @u.email, subject: '【ママパパQ&A】質問を投稿しました')
   end
 
   def send_post_answer(question, answer)
@@ -11,7 +11,7 @@ class UserMailer < ApplicationMailer
     @a = answer
     @u = User.find(question.user_id)
     @display_name = display_name
-    mail(to: @u.email, subject: '【パパママQA】質問にコメントされました')
+    mail(to: @u.email, subject: '【ママパパQ&A】質問にコメントされました')
   end
 
   def send_post_reply(question, answer, reply)
@@ -20,7 +20,7 @@ class UserMailer < ApplicationMailer
     @r = reply
     @u = User.find(answer.user_id)
     @display_name = display_name
-    mail(to: @u.email, subject: '【パパママQA】リプライされました')
+    mail(to: @u.email, subject: '【ママパパQ&A】リプライされました')
   end
 
   # TODO best answer

@@ -2,7 +2,7 @@ module ApplicationHelper
   include Pagy::Frontend
 
   def site_title(page_title = '')
-    base_title = 'パパママQA'
+    base_title = 'ママパパQ&A'
     if page_title.empty?
       base_title
     else
@@ -10,7 +10,7 @@ module ApplicationHelper
     end
   end
 
-  def site_description(page_description = '育児をしているパパママ必見の質問と回答のコミュニティサイトです。育児の悩みや疑問に答えたり、自分の育児の経験を共有したりできます。')
+  def site_description(page_description = 'ママとパパが育児に関する悩みや問題を解決するためのQ&Aサイト。ユーザー同士での相互支援や専門家からのアドバイスにより、育児に関する悩みを共有し解決策を見つけることができます。')
     if page_description.length > 120
       page_description[0...120] + "..."
     else
