@@ -50,6 +50,7 @@ test:
 #
 production:
   <<: *default
+  host: <%= ENV["APP_DATABASE_HOST"] %>
   database: kosodate_que
   username: app
   password: <%= ENV["APP_DATABASE_PASSWORD"] %>
