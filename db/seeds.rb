@@ -212,6 +212,7 @@ ary.each{|d|
       {
         question_id: q.id,
         content: d[:answer],
+        is_best_answer: true,
         user_id: 2,
       }
   )
