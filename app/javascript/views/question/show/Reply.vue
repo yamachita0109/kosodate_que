@@ -4,7 +4,7 @@
     :key="answer.id"
   >
     {{ answer.is_best_answer ? 'ベストアンサー' : '' }}
-    {{ answer.content }}
+    <p v-html="answer.content.replace(/\n/g, '<br>')"></p>
     <br />
     <div
       v-for="reply in answer.replies"

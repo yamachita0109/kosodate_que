@@ -11,7 +11,7 @@ title: <%= @question.title.nil? ? '-' : @question.title %>
 <br />
 tags: <%= @question.tags.nil? ? '-' : @question.tags %>
 <br />
-content: <%= @question.content.nil? ? '-' : @question.content %>
+content: <%= @question.content.nil? ? '-' : simple_format(@question.content) %>
 <br />
 status: <%= @question.status.nil? ? '-' : @question.status %>
 <br />
