@@ -4,6 +4,17 @@
     <title><%= site_title(yield(:title)) %></title>
     <meta data-hid="description" name="description" content="<%= site_description(yield(:description)) %>">
     <meta content="<%= site_keywords(yield(:keywords)) %>" name="keywords" />
+    <meta property="og:title" content="<%= site_title(yield(:title)) %>">
+    <meta property="og:type" content="<%= site_type(yield(:type)) %>">
+    <meta property="og:description" content="<%= site_description(yield(:description)) %>">
+    <meta property="og:url" content="https://papamamaqa.com">
+    <%# <meta property="og:image" content="https://teratail.com/img/ogpImages/imgFacebookShare.png"> %>
+    <meta property="og:site_name" content="ママパパQ&A">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="twitter:card" content="summary">
+    <%# <meta property="twitter:site" content="@teratail"> %>
+    <%# <meta property="twitter:image" content="https://teratail.com/img/ogpImages/imgTwitterCard.png"> %>
+
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
