@@ -29,12 +29,14 @@
 import { defineComponent } from 'vue'
 import axios from 'axios'
 import { Answer } from '../../../@types/answer'
+import { Question } from '../../../@types/question'
 
 export default defineComponent({
   components: {
   },
   data() {
     return {
+      // question_id
       id: location.pathname.split('/').pop(),
       answers: [] as Answer[],
       qstatus: '' as string,
@@ -42,23 +44,24 @@ export default defineComponent({
     }
   },
   async created() {
-    const res = await this.getAnswer()
-    this.answers = res.data.rows
-    this.qstatus = res.data.status
+    this.answers = await this.getAnswer()
+    this.qstatus = (await this.getQuestion())[0].status
   },
   methods: {
     async clickReply(id) {
       const text = this.repliesFrom[id]
       await this.postReply(id, text)
-      const res = await this.getAnswer()
-      this.answers = res.data.rows
+      this.answers = await this.getAnswer()
     },
-    async getAnswer() {
-      // TODO API client.
-      return await axios.get('/api/answer', { params: { question_id: this.id, order: '' } })
+    async getQuestion(): Promise<Question[]> {
+      const res = await axios.get('/api/question', { params: { id: this.id } })
+      return res.data.rows
+    },
+    async getAnswer(): Promise<Answer[]> {
+      const res = await axios.get('/api/answer', { params: { question_id: this.id, order: '' } })
+      return res.data.rows
     },
     async postReply(id, text) {
-      // TODO API client.
       await axios.post('/api/reply', { answer_id: id, content: text })
     }
   },

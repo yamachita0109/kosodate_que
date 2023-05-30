@@ -35,7 +35,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       ## 追加
       t.string :name
       t.text :content
-      t.string :logo
+      t.string :logo, null: false, default: "/img/no_icon.jpg"
       t.string :twitter_id
       t.string :instagram_id
       t.string :facebook_id

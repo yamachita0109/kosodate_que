@@ -3,6 +3,7 @@ export type Answer = {
   question_id: number;
   content: string;
   good_cnt: number;
+  bad_cnt: number;
   is_best_answer: boolean;
   user_id: number;
   created_at: string;

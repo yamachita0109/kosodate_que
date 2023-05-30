@@ -15,6 +15,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_24_072220) do
     t.integer "question_id", null: false
     t.text "content"
     t.integer "good_cnt", default: 0, null: false
+    t.integer "bad_cnt", default: 0, null: false
     t.boolean "is_best_answer", default: false, null: false
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
@@ -25,6 +26,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_24_072220) do
     t.string "title"
     t.string "tags"
     t.text "content"
+    t.integer "good_cnt", default: 0, null: false
+    t.integer "bad_cnt", default: 0, null: false
     t.integer "view_cnt", default: 0, null: false
     t.integer "answer_cnt", default: 0, null: false
     t.string "status", default: "WIP", null: false
@@ -54,7 +57,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_24_072220) do
     t.string "unconfirmed_email"
     t.string "name"
     t.text "content"
-    t.string "logo"
+    t.string "logo", default: "/img/no_icon.jpg", null: false
     t.string "twitter_id"
     t.string "instagram_id"
     t.string "facebook_id"

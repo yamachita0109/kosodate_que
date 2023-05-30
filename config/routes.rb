@@ -36,6 +36,7 @@ Rails.application.routes.draw do
 
   # API
   namespace 'api' do
+    get  'question'  => 'question#get'
     get  'answer'  => 'answer#get'
     post 'reply'  => 'reply#post'
     get  'tags'  => 'tags#get'

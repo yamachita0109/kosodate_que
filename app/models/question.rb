@@ -24,4 +24,8 @@ class Question < ApplicationRecord
   validates :status,
     presence: true,
     if: Proc.new { |a| Question.statuses.keys.include?(a) }
+
+  def user_hashid
+    User.encode_id user_id
+  end
 end

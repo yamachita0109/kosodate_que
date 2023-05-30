@@ -10,6 +10,7 @@ module.exports = {
     'question/edit/main': './app/javascript/views/question/edit/main.ts',
     'question/new/main': './app/javascript/views/question/new/main.ts',
     'mypage/show/main': './app/javascript/views/mypage/show/main.ts',
+    'profile/show/main': './app/javascript/views/profile/show/main.ts',
   },
   output: {
     filename: '[name].js',

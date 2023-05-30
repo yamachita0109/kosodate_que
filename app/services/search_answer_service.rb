@@ -21,9 +21,8 @@ class SearchAnswerService
         , replies_users.name AS reply_user_name
         , replies_users.logo AS reply_user_logo
       ')
-    if @param[:question_id].present?
-      res = res.where(question_id: @param[:question_id])
-    end
+
+    res = res.where(question_id: @param[:question_id]) if @param[:question_id].present?
     res
   end
 end

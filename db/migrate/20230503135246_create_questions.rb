@@ -4,6 +4,8 @@ class CreateQuestions < ActiveRecord::Migration[7.0]
       t.string :title
       t.string :tags
       t.text :content
+      t.integer :good_cnt, null: false, default: 0
+      t.integer :bad_cnt, null: false, default: 0
       t.integer :view_cnt, null: false, default: 0
       t.integer :answer_cnt, null: false, default: 0
       # WIP, OPEN, DONE, DELETE

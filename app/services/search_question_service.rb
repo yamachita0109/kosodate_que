@@ -18,21 +18,12 @@ class SearchQuestionService
         , users.facebook_id AS user_facebook_id
       ')
 
-    if @param[:user_id].present?
-      res = res.where(user_id: @param[:user_id])
-    end
-
-    if @param[:status].present?
-      res = res.where(status: @param[:status])
-    end
-
-    if @param[:text].present?
-      res = res.where('CONCAT(title, tags) LIKE ?', "%#{@param[:text]}%")
-    end
-
-    if @param[:tag].present?
-      res = res.where('CONCAT(tags) LIKE ?', "%#{@param[:tag]}%")
-    end
+    res = res.where(id: @param[:id]) if @param[:id].present?
+    res = res.where(user_id: @param[:user_id]) if @param[:user_id].present?
+    res = res.joins("INNER JOIN answers ON answers.question_id = questions.id AND answers.user_id = #{@param[:answer_user_id]}").group(:id) if @param[:answer_user_id].present?
+    res = res.where(status: @param[:status]) if @param[:status].present?
+    res = res.where('CONCAT(title, tags) LIKE ?', "%#{@param[:text]}%") if @param[:text].present?
+    res = res.where('CONCAT(tags) LIKE ?', "%#{@param[:tag]}%") if @param[:tag].present?
 
     case @param[:filter]
     when 'no_answer' then
