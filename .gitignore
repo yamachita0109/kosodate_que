@@ -85,3 +85,5 @@ coverage
 !/app/javascript/dist/.keep
 *.gz
 .env
+/app/assets/builds/*
+!/app/assets/builds/.keep
