@@ -1,9 +1,11 @@
 <h1>Contact#new</h1>
 
 <%= form_with local: true do |form| %>
-  email: <%= form.email_field :email, :value => current_user.email %>
+  email: <%= form.email_field :email, :value => current_user.email, required: true %>
   <br />
-  content: <%= form.text_area :content %>
+  種別:   <%= form.select :type, ['本サイトについて', '広告掲載', '質問削除依頼', 'その他']%>
+  <br />
+  content: <%= form.text_area :content, required: true %>
   <br />
 
   <%= form.submit %>

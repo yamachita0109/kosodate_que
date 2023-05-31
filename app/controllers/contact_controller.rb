@@ -6,8 +6,9 @@ class ContactController < ApplicationController
     notifier = Slack::Notifier.new(ENV['SLACK_WEBHOOK_URL'])
     notifier.ping <<-"EOS"
 <!channel>
-email: #{web_params[:email]}
-問い合わせ内容
+*email* : #{web_params[:email]}
+*お問い合わせ種別* : #{web_params[:type]}
+*問い合わせ内容* :
 #{web_params[:content]}
     EOS
     show_notice ['お問い合わせしました']
@@ -16,6 +17,6 @@ email: #{web_params[:email]}
 
   private
   def web_params
-    params.permit(:email, :content)
+    params.permit(:email, :content, :type)
   end
 end

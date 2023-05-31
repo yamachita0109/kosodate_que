@@ -1,6 +1,7 @@
 <template>
   <div
     v-for="answer in answers"
+    class="p-5"
     :key="answer.id"
   >
     {{ answer.is_best_answer ? 'ベストアンサー' : '' }}
