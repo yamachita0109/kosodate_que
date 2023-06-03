@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     get  'answer'  => 'answer#get'
     post 'reply'  => 'reply#post'
     get  'tags'  => 'tags#get'
+    get  'ai/answer'  => 'ai_answer#get'
   end
 
   # get '*path', controller: 'application', action: 'render_404'

@@ -144,6 +144,9 @@ GEM
       hashids (~> 1.0)
     hashids (1.0.6)
     hashie (5.0.0)
+    httparty (0.21.0)
+      mini_mime (>= 1.0.0)
+      multi_xml (>= 0.5.2)
     i18n (1.13.0)
       concurrent-ruby (~> 1.0)
     importmap-rails (1.1.6)
@@ -318,6 +321,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   hashid-rails
+  httparty
   importmap-rails
   jbuilder
   mysql2 (~> 0.5)
