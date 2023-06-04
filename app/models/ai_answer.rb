@@ -1,0 +1,2 @@
+class AiAnswer < ApplicationRecord
+end

@@ -3,7 +3,15 @@ module Api
     def get
       question = Question.find_by_hashid api_param[:question_id]
       raise 'No question.' if question.nil?
-      message = PostOpenAiService.new.call({ :text => question.content })
+
+      ai_answer = AiAnswer.find_by(question_id: question.id)
+      if ai_answer.nil?
+        message = PostOpenAiService.new.call({ :text => question.content })
+        AiAnswer.create!({ question_id: question.id, content: message })
+      else
+        message = ai_answer.content
+      end
+
       render json: {message: message}, status: :ok
     end
     private

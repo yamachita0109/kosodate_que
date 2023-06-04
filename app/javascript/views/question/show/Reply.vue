@@ -20,7 +20,10 @@
         v-model="repliesFrom[answer.id]"
       ></textarea>
       <br />
-      <button type="button" @click="clickReply(answer.id)">返信</button>
+      <button
+        type="button"
+        @click="clickReply(answer.id)"
+      >返信</button>
     </template>
     <hr />
   </div>
