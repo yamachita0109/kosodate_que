@@ -10,11 +10,9 @@
         class: "mr-5 hover:text-gray-900"
       %>
       <% if user_signed_in? %>
-        <%=
-          link_to 'マイページ',
-          mypage_path,
-          class: "mr-5 hover:text-gray-900"
-        %>
+        <a href="<%= mypage_path %>" class="inline-flex items-center mr-5">
+          <img src="<%= current_user.logo %>" class="w-8 h-8 rounded-full flex-shrink-0 object-cover object-center">
+        </a>
         <%=
           button_to 'ログアウト',
           destroy_user_session_path,
