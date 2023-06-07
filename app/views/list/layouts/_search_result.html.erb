@@ -1,0 +1,40 @@
+<% if @questions.present? %>
+  <%= @total_count %>件
+
+  <% @questions.each do |question| %>
+    <section class="text-gray-600 body-font overflow-hidden">
+      <div class="container px-5 py-6 mx-auto">
+        <div class="flex flex-wrap -m-12">
+          <div class="p-8 flex flex-col items-start">
+            <h2 class="text-2xl title-font font-medium text-gray-900 mt-4 mb-4"><%= link_to question.title, question_path(question.hashid) %></h2>
+            <%= question_status(question).html_safe %>
+            <span><%= question_tags(question.tags).html_safe %></span>
+            <p class="leading-relaxed mb-8"><%= question_content question.content %></p>
+            <div class="flex items-center flex-wrap pb-4 mb-4 border-b-2 border-gray-100 mt-auto w-full">
+              <a href="<%= profile_path(question.user_hashid) %>" class="inline-flex items-center">
+                <img src="<%= question.user_logo %>" class="w-8 h-8 rounded-full flex-shrink-0 object-cover object-center">
+                <span class="flex-grow flex flex-col pl-3">
+                  <span class="title-font font-medium text-gray-900"><%= question_user_name question.user_name %></span>
+                </span>
+              </a>
+              <span class="text-gray-400 mr-3 inline-flex items-center ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
+                <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg><%= number_with_delimiter question.view_cnt %>
+              </span>
+              <span class="text-gray-400 inline-flex items-center leading-none text-sm">
+                <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                  <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
+                </svg><%= number_with_delimiter question.answer_cnt %>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  <% end %>
+  <%== pagy_nav(@pagy) %>
+<% else %>
+  <p>検索結果がありません</p>
+<% end %>

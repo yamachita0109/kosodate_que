@@ -1,48 +1,19 @@
 <% content_for :type, 'website' %>
-<h1 class="text-3xl font-bold underline">
-  一覧
-</h1>
-<%= button_to 'ログイン', new_user_session_path, method: :get %>
-<%= button_to '会員登録', new_user_registration_path, method: :get %>
-<hr />
-<%= button_to 'マイページ', mypage_path, method: :get %>
-<%= button_to 'ログアウト', destroy_user_session_path, method: :delete %>
-<hr />
-<%= button_to '作成', new_question_path, method: :get %>
-<hr />
-<%= form_with local: true, method: :get do |form| %>
-  <%= form.text_field :text, :value => params[:text] %>
-  <%= form.select :filter,
-    [['新着', ''], ['未回答', 'no_answer'], ['解決済', 'done'], ['未解決', 'open']],
-    { selected: params[:filter] },
-    :onchange => 'submit(this.form)'
-  %>
-  <button type="submit">検索する</button>
-<% end %>
-<hr />
-<% if @questions.present? %>
-  <%= @total_count %>件
-  <% @questions.each do |question| %>
-  <ul>
-    <li><%= question.id %></li>
-    <li><%= link_to '変更', edit_question_path(question.hashid) %></li>
-    <li><%= question.title %></li>
-    <li><%= question.tags %></li>
-    <li><%= question.content %></li>
-    <li><%= question.view_cnt %></li>
-    <li><%= question.answer_cnt %></li>
-    <li><%= question.status %></li>
-    <li><%= question.user_id %></li>
-    <li><%= question.user_name %></li>
-    <li><%= image_tag question.user_logo, size: '64x64' %></li>
-    <li><%= question.user_twitter_id %></li>
-    <li><%= question.user_instagram_id %></li>
-    <li><%= question.user_facebook_id %></li>
-  </ul>
-  <%= link_to '閲覧', question_path(question.hashid) %>
-  <% end %>
 
-  <%== pagy_nav(@pagy) %>
-<% else %>
-  <p>検索結果がありません</p>
-<% end %>
+<div class="container mx-auto flex flex-wrap py-6">
+  <section class="w-full md:w-3/4 flex flex-col px-3">
+    <%= render partial: 'layouts/h1', locals: { h1: '質問を探す' } %>
+
+    <%# 検索 %>
+    <%= render partial: 'list/layouts/search_form' %>
+
+    <%# 検索結果 %>
+    <%= render partial: 'list/layouts/search_result' %>
+
+  </section>
+  <aside class="w-full md:w-1/4 flex flex-col px-3">
+    <div class="w-full bg-white shadow flex flex-col my-4 p-6">
+      <p class="text-xl font-semibold pb-5">広告掲載</p>
+    </div>
+  </aside>
+</div>

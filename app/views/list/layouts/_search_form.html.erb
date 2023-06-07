@@ -1,0 +1,23 @@
+<%= form_with local: true, method: :get do |form| %>
+  <div class="container mx-auto flex flex-wrap py-6">
+    <div class="w-full md:w-6/12 w-6/6 flex flex-col px-3 my-2">
+      <%=
+        form.text_field :text,
+        :value => params[:text],
+        class: "w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out",
+        placeholder: 'キーワードで検索'
+      %>
+    </div>
+    <div class="w-full md:w-3/12 w-1/2 flex flex-col px-3 my-2">
+      <%= form.select :filter,
+        [['新着', ''], ['未回答', 'no_answer'], ['解決済', 'done'], ['未解決', 'open']],
+        { selected: params[:filter] },
+        :onchange => 'submit(this.form)',
+        class: "border border-gray-300 text-gray-900 text-sm rounded focus:ring-green-200 focus:border-green-500 block w-full p-2.5"
+      %>
+    </div>
+    <div class="w-full md:w-3/12 w-1/2 flex flex-col px-3 my-2">
+      <button type=submit class="text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg">検索する</button>
+    </div>
+  </div>
+<% end %>
