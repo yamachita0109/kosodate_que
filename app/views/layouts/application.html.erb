@@ -25,23 +25,11 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FZ97HD18X1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-FZ97HD18X1');
-    </script>
+    <%= render partial: 'layouts/ga' %>
   </head>
 
   <body class="bg-white font-family-karla">
-    <% if notice %>
-      <p class="notice"><%= notice.html_safe %></p>
-    <% end %>
-    <% if alert %>
-      <p class="alert"><%= alert.html_safe %></p>
-    <% end %>
+    <%= render partial: 'layouts/alert' %>
     <%= render partial: 'layouts/header' %>
     <%= yield %>
     <%= render partial: 'layouts/footer' %>
