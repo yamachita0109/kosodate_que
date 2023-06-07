@@ -1,12 +1,44 @@
-<h1>Contact#new</h1>
+<% content_for :title, 'お問い合わせ' %>
 
-<%= form_with local: true do |form| %>
-  email: <%= form.email_field :email, :value => current_user.email, required: true %>
-  <br />
-  種別:   <%= form.select :type, ['本サイトについて', '広告掲載', '質問削除依頼', 'その他']%>
-  <br />
-  content: <%= form.text_area :content, required: true %>
-  <br />
+<div class="container mx-auto flex flex-wrap py-6">
+  <section class="w-full md:w-3/4 flex flex-col px-3">
+    <%= render partial: 'layouts/h1', locals: { h1: 'お問い合わせ' } %>
+    <%= form_with local: true do |form| %>
+      <div class="relative mb-4">
+        <label class="leading-7 text-sm text-gray-600">メールアドレス</label>
+        <%=
+          form.email_field :email,
+          maxlength: 255,
+          required: true,
+          :value => current_user.email,
+          class: "w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+        %>
+      </div>
 
-  <%= form.submit %>
-<% end %>
+      <div class="relative mb-4">
+        <%= form.select :type,
+          ['本サイトについて', '広告掲載', '質問削除依頼', 'その他'],{},
+          class: "w-1/2 border border-gray-300 text-gray-900 text-sm rounded focus:ring-green-200 focus:border-green-500 block p-2.5"
+        %>
+      </div>
+
+      <div class="relative mb-4">
+        <label class="leading-7 text-sm text-gray-600">お問い合わせ内容</label>
+        <%=
+          form.text_area :content,
+          maxlength: 2000,
+          required: true,
+          class: "w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 h-96 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
+        %>
+      </div>
+
+      <button
+        type="submit"
+        class="text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg"
+      >お問い合わせする</button>
+    <% end %>
+  </section>
+  <aside class="w-full md:w-1/4 flex flex-col px-3">
+    <%= render partial: 'layouts/side_banner' %>
+  </aside>
+</div>

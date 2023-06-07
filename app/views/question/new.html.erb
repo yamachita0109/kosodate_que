@@ -10,6 +10,7 @@
         <%=
           form.text_field :title,
           maxlength: 200,
+          required: true,
           class: "w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
         %>
         <p class="text-xs text-gray-500 mt-3">タイトルは質問内容を簡潔に書きましょう。</p>
@@ -18,7 +19,7 @@
       <div class="relative mb-4">
         <label class="leading-7 text-sm text-gray-600">タグ</label>
         <div id="vue-tags"></div>
-        <%= form.hidden_field :tags %>
+        <%= form.hidden_field :tags, required: true %>
         <p class="text-xs text-gray-500 mt-3">質問に関するタグを3つほど入力しましょう。</p>
       </div>
 
@@ -27,6 +28,7 @@
         <%=
           form.text_area :content,
           maxlength: 2000,
+          required: true,
           class: "w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 h-96 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
         %>
       </div>
