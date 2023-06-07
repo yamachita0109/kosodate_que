@@ -8,7 +8,7 @@ module ApplicationHelper
   end
 
   def site_description(page_description = '')
-    base_description = 'ママとパパが育児に関する悩みや問題を解決するためのQ&Aサイト。ユーザー同士での相互支援やアドバイスにより、育児に関する悩みを共有し解決策を見つけることができます。'
+    base_description = 'ママとパパのためのソーシャルQ&Aサイトです。育児に関する悩みや問題を解決するために利用できます。ママやパパ同士がお互いに支援し合ったりアドバイスをしたりすることで、育児に関する悩みを共有し、解決策を見つけることができます。'
     return base_description if page_description.empty?
 
     if page_description.length > 120
