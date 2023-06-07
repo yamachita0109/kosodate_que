@@ -1,6 +1,7 @@
 <% if @questions.present? %>
-  <%= @total_count %>件
-
+  <div>
+    <span class="text-lg text-green-500 leading-relaxed"><%= @total_count %></span>件表示
+  </div>
   <% @questions.each do |question| %>
     <section class="text-gray-600 body-font overflow-hidden">
       <div class="container px-5 py-6 mx-auto">
