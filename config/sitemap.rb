@@ -1,5 +1,5 @@
 # Set the host name for URL creation
-SitemapGenerator::Sitemap.default_host = "https://papamamaqa.com"
+SitemapGenerator::Sitemap.default_host = "https://mamapapa-qa.com"
 
 SitemapGenerator::Sitemap.create do
   add '/', changefreq: 'daily', priority: 0.9

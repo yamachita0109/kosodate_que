@@ -3,7 +3,7 @@
 <% content_for :keywords, @question.tags %>
 
 <h1>Question#show</h1>
-<% if current_user.id == @question.user_id %>
+<% if current_user.present? and current_user.id == @question.user_id %>
   <%= link_to '変更', edit_question_path(@question.hashid) %>
 <% end %>
 <hr />

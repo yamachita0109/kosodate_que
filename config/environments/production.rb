@@ -71,7 +71,7 @@ Rails.application.configure do
     region: 'ap-northeast-1'
   )
 
-  config.action_mailer.default_url_options = { host: 'papamamaqa.com' }
+  config.action_mailer.default_url_options = { host: 'mamapapa-qa.com' }
   config.action_mailer.delivery_method = :ses
   config.action_mailer.perform_deliveries = true
   config.action_mailer.perform_caching = false

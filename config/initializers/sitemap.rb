@@ -1,4 +1,4 @@
-SitemapGenerator::Sitemap.default_host = "https://papamamaqa.com"
+SitemapGenerator::Sitemap.default_host = "https://mamapapa-qa.com"
 SitemapGenerator::Sitemap.sitemaps_path = 'sitemaps/'
 
 SitemapGenerator::Sitemap.create do

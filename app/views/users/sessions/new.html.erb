@@ -1,28 +1,49 @@
 <% content_for :title, 'ログイン' %>
 
-<h2>Log in</h2>
+<div class="container px-5 py-24 mx-auto">
+  <section class="lg:w-1/2 md:w-2/3 mx-auto">
+    <%= render partial: 'layouts/h1', locals: { h1: 'ログイン' } %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="relative mb-8">
+        <label class="leading-7 text-sm text-gray-600">メールアドレス</label>
+        <%=
+          f.email_field :email,
+          maxlength: 255,
+          autofocus: true,
+          autocomplete: "email",
+          class: "w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+        %>
+      </div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+      <div class="relative mb-8">
+        <label class="leading-7 text-sm text-gray-600">パスワード</label>
+        <%=
+          f.password_field :password,
+          autocomplete: "current-password",
+          class: "w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+        %>
+      </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <button
+        type="submit"
+        class="text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg mb-8"
+      >ログイン</button>
+    <% end %>
+    <p class="text-base leading-relaxed mb-2"><%= link_to 'パスワードをお忘れですか？', new_user_password_path, class: "text-green-500 leading-relaxed" %></p>
+    <p class="text-base leading-relaxed mb-2"><%= link_to '会員登録はこちら', new_user_registration_path, class: "text-green-500 leading-relaxed" %></p>
+    <div class="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
+    <%- if devise_mapping.omniauthable? %>
+      <%- resource_class.omniauth_providers.each do |provider| %>
+        <div class="w-full lg:w-1/2 md:w-2/3 mx-auto">
+          <%= form_with(url: omniauth_authorize_path(resource_name, provider), method: :post, local: true ) do |form| %>
+            <button type="submit" class="text-white w-full  bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center justify-between dark:focus:ring-[#4285F4]/55 mr-2 mb-2">
+              <svg class="mr-2 -ml-1 w-4 h-4" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512"><path fill="currentColor" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"></path></svg>
+              Sign in with Google<div></div>
+            </button>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+  </section>
+</div>

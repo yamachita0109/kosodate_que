@@ -43,7 +43,7 @@ class QuestionController < ApplicationController
       render_404
       return
     end
-    @question.increment!(:view_cnt) unless current_user.id == @question.user_id
+    @question.increment!(:view_cnt)
   rescue
     redirect_to root_path
   end

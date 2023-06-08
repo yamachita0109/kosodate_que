@@ -2,4 +2,4 @@ User-agent: *
 Disallow: /mypage/
 Disallow: /users/
 
-Sitemap: https://papamamaqa.com/sitemaps/sitemap.xml.gz
+Sitemap: https://mamapapa-qa.com/sitemaps/sitemap.xml.gz
