@@ -1,3 +1,13 @@
-<h1>404 Not Found</h1>
-<p>The page you requested could not be found.</p>
-<p>Please try again.</p>
+<% content_for :title, '404 Not Found' %>
+
+<div class="container px-5 py-24 mx-auto">
+  <section class="lg:w-1/2 md:w-2/3 mx-auto">
+    <%= render partial: 'layouts/h1', locals: { h1: 'お探しのページは見つかりませんでした。' } %>
+    <p class="text-base leading-relaxed mb-2">ママパパQ&Aをご利用いただきましてありがとうございます。</p>
+    <p class="text-base leading-relaxed mb-2">誠に恐れ入りますが、お客様がアクセスしようとしたページが見つかりませんでした。</p>
+    <p class="text-base leading-relaxed mb-8">すでに削除されたか、アドレスが間違っている可能性がございます。</p>
+    <p class="w-full flex justify-center">
+      <a href="/" class="text-white bg-green-500 border-0 py-4 px-6 focus:outline-none hover:bg-green-600 rounded text-lg">ママパパQ&Aトップ</a>
+    </p>
+  </section>
+</div>
