@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'list#index'
+  root 'question#index'
 
   # devise
   devise_for :users, controllers: {

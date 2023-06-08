@@ -2,6 +2,30 @@
 <% content_for :description, @question.content %>
 <% content_for :keywords, @question.tags %>
 
+<div class="container mx-auto flex flex-wrap py-6">
+  <section class="w-full md:w-3/4 flex flex-col px-3">
+    <div class="flex">
+      <%= question_status(@question).html_safe %>
+    </div>
+
+    <%= render partial: 'layouts/h1', locals: { h1: @question.title } %>
+
+
+  </section>
+  <aside class="w-full md:w-1/4 flex flex-col px-3">
+    <div class="w-full bg-white shadow flex flex-col my-4 p-6">
+      <p class="text-xl font-semibold pb-5">子育てAI「あいママ」に聞いてみる</p>
+      <div id="vue-ai-answer"></div>
+    </div>
+    <div class="w-full bg-white shadow flex flex-col my-4 p-6">
+      <p class="text-xl font-semibold pb-5">似た質問</p>
+    </div>
+  </aside>
+</div>
+
+
+
+
 <h1>Question#show</h1>
 <% if current_user.present? and current_user.id == @question.user_id %>
   <%= link_to '変更', edit_question_path(@question.hashid) %>
@@ -32,4 +56,4 @@ Reply
   <% end %>
 <% end %>
 <hr />
-<div id="vue-ai-answer"></div>
+

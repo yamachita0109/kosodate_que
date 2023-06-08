@@ -1,6 +1,15 @@
 class QuestionController < ApplicationController
-  before_action :authenticate_user!, except: [:show]
-  before_action :fetch_info
+  include Pagy::Backend
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :fetch_info, except: [:index]
+
+  def index
+    param = index_params
+    param[:status] = [Question.statuses[:open], Question.statuses[:done]]
+    questions = SearchQuestionService.new.call(param)
+    @pagy, @questions = pagy(questions)
+    @total_count = questions.count(:id)
+  end
 
   def new
   end
@@ -87,6 +96,10 @@ class QuestionController < ApplicationController
     info = Question.find_by_hashid params[:id]
     @question = info.nil? ? Question.new : info
     @user = User.find_by(id: @question.user_id)
+  end
+
+  def index_params
+    params.permit(:text, :filter, :tag)
   end
 
   def web_params
