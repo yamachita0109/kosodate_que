@@ -1,6 +1,6 @@
 <% if @questions.present? %>
   <div>
-    <span class="text-lg text-green-500 leading-relaxed"><%= @total_count %></span>件表示
+    <span class="text-lg text-green-500 leading-relaxed"><%= number_with_delimiter @total_count %></span>件表示
   </div>
   <% @questions.each do |question| %>
     <section class="text-gray-600 body-font overflow-hidden">

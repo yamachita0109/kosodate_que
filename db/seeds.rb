@@ -205,6 +205,8 @@ ary.each{|d|
         tags: d[:tags],
         content: d[:content],
         status: 'DONE',
+        view_cnt: rand(100..200),
+        answer_cnt: 1,
         user_id: 1,
       }
   )
