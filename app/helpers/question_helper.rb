@@ -3,7 +3,7 @@ module QuestionHelper
     text = ''
     color = ''
     if question.wip?
-      text = '作成中'
+      text = '下書き'
       color = 'yellow'
     end
     if question.open?

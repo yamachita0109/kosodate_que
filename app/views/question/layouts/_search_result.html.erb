@@ -18,6 +18,9 @@
                   <span class="title-font font-medium text-gray-900"><%= question_user_name question.user_name %></span>
                 </span>
               </a>
+              <p class="text-gray-400 inline-flex items-center ml-3">
+                <%= question.created_at.strftime('%Y/%m/%d %H:%M') %>
+              </p>
               <span class="text-gray-400 mr-3 inline-flex items-center ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
                 <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
                   <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>

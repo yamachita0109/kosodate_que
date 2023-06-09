@@ -18,7 +18,7 @@
           閲覧数 <%= number_with_delimiter @question.view_cnt %>
       </span>
       <p class="text-gray-400 inline-flex items-center ml-3">
-        投稿 <%= @question.created_at.strftime('%Y/%m/%d') %>
+        投稿 <%= @question.created_at.strftime('%Y/%m/%d %H:%M') %>
       </p>
       <a href="<%= profile_path(@question.user_hashid) %>" class="inline-flex items-center ml-auto mr-3">
         <img src="<%= @user.logo %>" class="w-8 h-8 rounded-full flex-shrink-0 object-cover object-center">
@@ -29,14 +29,132 @@
     </div>
 
     <div class="p-8 w-full mt-4 border-t border-gray-200">
-      <p class="text-gray-900 text-xl"><%= simple_format(h(@question.content)) %></p>
+      <div class="text-gray-900 text-base">
+        <%= simple_format(h(@question.content)) %>
+      </div>
     </div>
 
-    <div class="p-2 w-full pt-4 mt-4 border-t border-gray-200">
+    <%# https://tailwindflex.com/prajwal/thumbs-up-and-thumbs-down-buttons %>
+    <div class="pt-4 flex gap-2">
+      <button class="py-1.5 px-3 hover:text-green-600 hover:scale-105 hover:shadow text-center border border-gray-300 rounded-md border-gray-400 h-8 text-sm flex items-center gap-1 lg:gap-2">
+        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z"></path>
+        </svg>
+        <span><%= number_with_delimiter @question.good_cnt %></span>
+      </button>
+    </div>
+
+    <div class="w-full pt-8 mt-8">
       <span class="text-gray-600 inline-flex items-center">
         <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path></svg>
           回答数 <%= number_with_delimiter @question.answer_cnt %>
       </span>
+
+      <div class="flex flex-col gap-5 m-3">
+        <!-- Comment Container -->
+        <div>
+            <div class="flex w-full justify-between border rounded-md">
+
+                <div class="p-3">
+                    <div class="flex gap-3 items-center">
+                        <img src="https://avatars.githubusercontent.com/u/22263436?v=4" class="object-cover w-10 h-10 rounded-full border-2 border-emerald-400  shadow-emerald-400">
+                        <h3 class="font-bold">
+                            User 1
+                            <br>
+                            <span class="text-sm text-gray-400 font-normal">Level 1</span>
+                        </h3>
+                    </div>
+                    <p class="text-gray-600 mt-2">
+                        this is sample commnent
+                    </p>
+                    <button class="text-right text-blue-500">Reply</button>
+                </div>
+
+
+
+            </div>
+
+
+
+
+            <!-- Reply Container  -->
+            <div class="text-gray-300 font-bold pl-14">|</div>
+            <div class="flex justify-between border ml-5  rounded-md">
+
+                <div class="p-3">
+                    <div class="flex gap-3 items-center">
+                        <img src="https://avatars.githubusercontent.com/u/22263436?v=4" class="object-cover w-10 h-10 rounded-full border-2 border-emerald-400  shadow-emerald-400">
+                        <h3 class="font-bold">
+                            User 2
+                            <br>
+                            <span class="text-sm text-gray-400 font-normal">Level 1</span>
+                        </h3>
+                    </div>
+                    <p class="text-gray-600 mt-2">
+                        this is sample commnent
+                    </p>
+                </div>
+
+
+
+            </div>
+            <!-- END Reply Container  -->
+
+
+
+            <!-- Reply Container  -->
+            <div class="text-gray-300 font-bold pl-14">|</div>
+            <div class="flex justify-between border ml-5  rounded-md">
+                <div class="p-3">
+                    <div class="flex gap-3 items-center">
+                        <img src="https://avatars.githubusercontent.com/u/22263436?v=4" class="object-cover w-10 h-10 rounded-full border-2 border-emerald-400  shadow-emerald-400">
+                        <h3 class="font-bold">
+                            User 3
+                            <br>
+                            <span class="text-sm text-gray-400 font-normal">Level 1</span>
+                        </h3>
+                    </div>
+                    <p class="text-gray-600 mt-2">
+                        this is sample commnent
+                    </p>
+                </div>
+
+
+
+            </div>
+            <!-- END Reply Container  -->
+
+        </div>
+        <!-- END Comment Container  -->
+
+
+
+
+
+        <div class="flex w-full justify-between border rounded-md">
+            <div class="p-3">
+
+                <div class="flex gap-3 items-center">
+                    <img src="https://avatars.githubusercontent.com/u/22263436?v=4" class="object-cover w-10 h-10 rounded-full border-2 border-emerald-400  shadow-emerald-400">
+                    <h3 class="font-bold">
+                        User 4
+                        <br>
+                        <span class="text-sm text-gray-400 font-normal">Level 1</span>
+                    </h3>
+
+                </div>
+                <p class="text-gray-600 mt-2">
+                    this is sample commnent
+                </p>
+                <button class="text-right text-blue-500">Reply</button>
+            </div>
+        </div>
+      </div>
+
+
+
+
+
     </div>
 
 
