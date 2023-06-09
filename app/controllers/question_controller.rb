@@ -48,11 +48,11 @@ class QuestionController < ApplicationController
       return
     end
     if @question.del?
-      # TODO 削除されているページを出す
       render_404
       return
     end
     @question.increment!(:view_cnt)
+    @user = User.find @question.user_id
   rescue
     redirect_to root_path
   end

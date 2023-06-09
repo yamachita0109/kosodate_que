@@ -18,7 +18,7 @@ module QuestionHelper
       text = '取下げ'
       color = 'gray'
     end
-    "<span class='py-1 px-2 rounded bg-#{color}-100 text-#{color}-500 text-xs font-medium tracking-widest'>#{text}</span>"
+    "<span class='py-1 px-2 rounded bg-#{color}-100 text-#{color}-500 text-xs font-medium tracking-widest mb-2'>#{text}</span>"
   end
 
   def question_content(content)
@@ -39,7 +39,7 @@ module QuestionHelper
 
   def question_tags(tags)
     tags.split(',').reduce('') {|html, tag|
-      html += "<span class='py-1 px-2 rounded bg-green-50 text-green-500 text-xs font-medium tracking-widest'>#{tag}</span>"
+      html += "<span class='py-1 px-2 rounded bg-green-50 text-green-500 text-xs font-medium tracking-widest mr-1'>#{tag}</span>"
     }
   end
 end

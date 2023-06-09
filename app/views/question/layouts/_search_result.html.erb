@@ -7,8 +7,8 @@
       <div class="container px-5 py-6 mx-auto">
         <div class="flex flex-wrap -m-12">
           <div class="p-8 flex flex-col items-start">
-            <h2 class="text-2xl title-font font-medium text-gray-900 mt-4 mb-4"><%= link_to question.title, question_path(question.hashid) %></h2>
             <%= question_status(question).html_safe %>
+            <h2 class="text-2xl title-font font-medium text-gray-900 mb-2"><%= link_to question.title, question_path(question.hashid) %></h2>
             <span><%= question_tags(question.tags).html_safe %></span>
             <p class="leading-relaxed mb-8"><%= question_content question.content %></p>
             <div class="flex items-center flex-wrap pb-4 mb-4 border-b-2 border-gray-100 mt-auto w-full">

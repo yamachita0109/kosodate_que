@@ -28,4 +28,12 @@ class Question < ApplicationRecord
   def user_hashid
     User.encode_id user_id
   end
+
+  def display_created_at
+    if created_at >= 1.day.ago
+      time_ago_in_words(created_at)
+    else
+      created_at.strftime('%Y/%m/%d')
+    end
+  end
 end
