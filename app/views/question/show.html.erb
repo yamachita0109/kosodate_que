@@ -10,39 +10,9 @@
 
     <%= render partial: 'layouts/h1', locals: { h1: @question.title } %>
 
-    <span><%= question_tags(@question.tags).html_safe %></span>
+    <%= render partial: 'question/layouts/show_detail' %>
 
-    <div class="p-2 w-full pt-4 mt-4 border-t border-gray-200 flex text-sm">
-      <span class="text-gray-600 inline-flex items-center pr-3 py-1">
-        <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-          閲覧数 <%= number_with_delimiter @question.view_cnt %>
-      </span>
-      <p class="text-gray-400 inline-flex items-center ml-3">
-        投稿 <%= @question.created_at.strftime('%Y/%m/%d %H:%M') %>
-      </p>
-      <a href="<%= profile_path(@question.user_hashid) %>" class="inline-flex items-center ml-auto mr-3">
-        <img src="<%= @user.logo %>" class="w-8 h-8 rounded-full flex-shrink-0 object-cover object-center">
-        <span class="flex-grow flex flex-col pl-3">
-          <span class="title-font font-medium text-gray-900"><%= question_user_name @user.name %></span>
-        </span>
-      </a>
-    </div>
-
-    <div class="p-8 w-full mt-4 border-t border-gray-200">
-      <div class="text-gray-900 text-base">
-        <%= simple_format(h(@question.content)) %>
-      </div>
-    </div>
-
-    <%# https://tailwindflex.com/prajwal/thumbs-up-and-thumbs-down-buttons %>
-    <div class="pt-4 flex gap-2">
-      <button class="py-1.5 px-3 hover:text-green-600 hover:scale-105 hover:shadow text-center border border-gray-300 rounded-md border-gray-400 h-8 text-sm flex items-center gap-1 lg:gap-2">
-        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z"></path>
-        </svg>
-        <span><%= number_with_delimiter @question.good_cnt %></span>
-      </button>
-    </div>
+    <%= render partial: 'question/layouts/show_good_cnt' %>
 
     <div class="w-full pt-8 mt-8">
       <span class="text-gray-600 inline-flex items-center">

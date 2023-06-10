@@ -53,6 +53,7 @@ class QuestionController < ApplicationController
     end
     @question.increment!(:view_cnt)
     @user = User.find @question.user_id
+    @history = QuestionCntHistory.find_by({ :user_id => current_user.id, :question_id => @question.id })
   rescue
     redirect_to root_path
   end
@@ -91,6 +92,26 @@ class QuestionController < ApplicationController
     redirect_to question_path params[:id]
   end
 
+  # good数のみ（様子を見てbad対応も実施）
+  def post_cnt
+    param = { :user_id => current_user.id, :question_id => @question.id }
+    history = QuestionCntHistory.find_by param
+    msg = 'いいねしました'
+    if history.nil?
+      @question.increment!(:good_cnt)
+      QuestionCntHistory.create! param
+    else
+      msg = 'いいねを削除しました'
+      @question.decrement!(:good_cnt)
+      history.destroy
+    end
+    show_notice [msg]
+    redirect_to question_path params[:id]
+  rescue ActiveRecord::RecordInvalid => e
+    show_alert e.record.errors.full_messages
+    redirect_to question_path params[:id]
+  end
+
   private
   def fetch_info
     info = Question.find_by_hashid params[:id]
@@ -107,6 +128,10 @@ class QuestionController < ApplicationController
   end
 
   def answer_params
+    params.permit(:content)
+  end
+
+  def cnt_params
     params.permit(:content)
   end
 end

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   # 質問
   resources :question, only: [:create, :new, :edit, :show, :update]
   post 'question/post_answer'  => 'question#post_answer'
+  post 'question/post_cnt'  => 'question#post_cnt'
   get  '/tag/:tag', to: 'list#index', as: 'tag'
   get  'question' => redirect('/')
 

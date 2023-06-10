@@ -1,0 +1,23 @@
+<span><%= question_tags(@question.tags).html_safe %></span>
+
+<div class="p-2 w-full pt-4 mt-4 border-t border-gray-200 flex text-sm">
+  <span class="text-gray-600 inline-flex items-center pr-3 py-1">
+    <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+      閲覧数 <%= number_with_delimiter @question.view_cnt %>
+  </span>
+  <p class="text-gray-400 inline-flex items-center ml-3">
+    投稿 <%= @question.created_at.strftime('%Y/%m/%d %H:%M') %>
+  </p>
+  <a href="<%= profile_path(@question.user_hashid) %>" class="inline-flex items-center ml-auto mr-3">
+    <img src="<%= @user.logo %>" class="w-8 h-8 rounded-full flex-shrink-0 object-cover object-center">
+    <span class="flex-grow flex flex-col pl-3">
+      <span class="title-font font-medium text-gray-900"><%= question_user_name @user.name %></span>
+    </span>
+  </a>
+</div>
+
+<div class="p-8 w-full mt-4 border-t border-gray-200">
+  <div class="text-gray-900 text-base">
+    <%= simple_format(h(@question.content)) %>
+  </div>
+</div>
