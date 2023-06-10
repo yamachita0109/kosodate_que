@@ -10,120 +10,12 @@
 
     <%= render partial: 'layouts/h1', locals: { h1: @question.title } %>
 
-    <%= render partial: 'question/layouts/show_detail' %>
+    <%= render partial: 'question/layouts/show_question' %>
 
     <%= render partial: 'question/layouts/show_good_cnt' %>
 
-    <div class="w-full pt-8 mt-8">
-      <span class="text-gray-600 inline-flex items-center">
-        <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path></svg>
-          回答数 <%= number_with_delimiter @question.answer_cnt %>
-      </span>
+    <%= render partial: 'question/layouts/show_reply' %>
 
-      <div class="flex flex-col gap-5 m-3">
-        <!-- Comment Container -->
-        <div>
-          <div class="flex w-full justify-between border rounded-md">
-            <div class="p-3">
-              <div class="flex gap-3 items-center">
-                <img src="https://avatars.githubusercontent.com/u/22263436?v=4" class="object-cover w-10 h-10 rounded-full border-2 border-emerald-400  shadow-emerald-400">
-                <h3 class="font-bold">
-                  User 1
-                  <br>
-                  <span class="text-sm text-gray-400 font-normal">2023/06/09 23:29</span>
-                </h3>
-              </div>
-              <div class="text-gray-600 mt-2">
-                this is sample commnent
-              </div>
-              <button class="text-right text-green-500">
-                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M8.309 189.836L184.313 37.851C199.719 24.546 224 35.347 224 56.015v80.053c160.629 1.839 288 34.032 288 186.258 0 61.441-39.581 122.309-83.333 154.132-13.653 9.931-33.111-2.533-28.077-18.631 45.344-145.012-21.507-183.51-176.59-185.742V360c0 20.7-24.3 31.453-39.687 18.164l-176.004-152c-11.071-9.562-11.086-26.753 0-36.328z"/></svg>
-              </button>
-            </div>
-          </div>
-
-
-
-
-            <!-- Reply Container  -->
-            <div class="text-gray-300 font-bold pl-14">|</div>
-            <div class="flex justify-between border ml-5  rounded-md">
-
-                <div class="p-3">
-                    <div class="flex gap-3 items-center">
-                        <img src="https://avatars.githubusercontent.com/u/22263436?v=4" class="object-cover w-10 h-10 rounded-full border-2 border-emerald-400  shadow-emerald-400">
-                        <h3 class="font-bold">
-                            User 2
-                            <br>
-                            <span class="text-sm text-gray-400 font-normal">Level 1</span>
-                        </h3>
-                    </div>
-                    <p class="text-gray-600 mt-2">
-                        this is sample commnent
-                    </p>
-                </div>
-
-
-
-            </div>
-            <!-- END Reply Container  -->
-
-
-
-            <!-- Reply Container  -->
-            <div class="text-gray-300 font-bold pl-14">|</div>
-            <div class="flex justify-between border ml-5  rounded-md">
-                <div class="p-3">
-                    <div class="flex gap-3 items-center">
-                        <img src="https://avatars.githubusercontent.com/u/22263436?v=4" class="object-cover w-10 h-10 rounded-full border-2 border-emerald-400  shadow-emerald-400">
-                        <h3 class="font-bold">
-                            User 3
-                            <br>
-                            <span class="text-sm text-gray-400 font-normal">Level 1</span>
-                        </h3>
-                    </div>
-                    <p class="text-gray-600 mt-2">
-                        this is sample commnent
-                    </p>
-                </div>
-
-
-
-            </div>
-            <!-- END Reply Container  -->
-
-        </div>
-        <!-- END Comment Container  -->
-
-
-
-
-
-        <div class="flex w-full justify-between border rounded-md">
-            <div class="p-3">
-
-                <div class="flex gap-3 items-center">
-                    <img src="https://avatars.githubusercontent.com/u/22263436?v=4" class="object-cover w-10 h-10 rounded-full border-2 border-emerald-400  shadow-emerald-400">
-                    <h3 class="font-bold">
-                        User 4
-                        <br>
-                        <span class="text-sm text-gray-400 font-normal">Level 1</span>
-                    </h3>
-
-                </div>
-                <p class="text-gray-600 mt-2">
-                    this is sample commnent
-                </p>
-                <button class="text-right text-blue-500">Reply</button>
-            </div>
-        </div>
-      </div>
-
-
-
-
-
-    </div>
 
 
   </section>

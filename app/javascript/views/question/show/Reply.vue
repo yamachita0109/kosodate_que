@@ -1,31 +1,72 @@
 <template>
-  <div
-    v-for="answer in answers"
-    class="p-5"
-    :key="answer.id"
-  >
-    {{ answer.is_best_answer ? 'ベストアンサー' : '' }}
-    <p v-html="answer.content.replace(/\n/g, '<br>')"></p>
-    <br />
+  <div class="flex flex-col gap-5 m-3">
+    <!-- Comment Container -->
     <div
-      v-for="reply in answer.replies"
-      :key="reply.id"
+      v-for="answer in answers"
+      :key="answer.id"
     >
-      ・{{ reply.content }}
+      <div
+        class="flex w-full justify-between border rounded-md"
+      >
+        <div class="p-3 w-full">
+          <div class="flex gap-3 items-center">
+            <img src="https://avatars.githubusercontent.com/u/22263436?v=4" class="object-cover w-10 h-10 rounded-full border-2 border-emerald-400  shadow-emerald-400">
+            <h3 class="font-bold">
+              User 1
+              <br>
+              <span class="text-sm text-gray-400 font-normal">2023/06/09 23:29</span>
+            </h3>
+          </div>
+          {{ answer.is_best_answer ? 'ベストアンサー' : '' }}
+          <div
+            v-html="answer.content.replace(/\n/g, '<br>')"
+            class="text-gray-600 mt-2"
+          ></div>
+          <button
+            class="text-right text-green-500 mt-4"
+            @click="repliesFromShow[answer.id] = true"
+            v-show="!repliesFromShow[answer.id]"
+            v-if="qstatus == 'open'"
+          >コメントする</button>
+
+          <div
+            v-show="repliesFromShow[answer.id]"
+            class="w-full mt-4"
+          >
+            <textarea
+              v-model="repliesFrom[answer.id]"
+              maxlength="2000"
+              class="w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 h-12 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
+            ></textarea>
+            <button
+              class="text-right text-green-500 mt-2"
+              type="button"
+              @click="clickReply(answer.id)"
+            >コメントする</button>
+          </div>
+
+
+        </div>
+      </div>
+
+      <template
+        v-for="reply in answer.replies"
+        :key="reply.id"
+      >
+        <div class="text-gray-300 font-bold pl-14">|</div>
+        <div class="flex justify-between border ml-5  rounded-md">
+          <div class="p-3">
+            <div class="flex gap-3 items-center">
+              <img src="https://avatars.githubusercontent.com/u/22263436?v=4" class="object-cover w-10 h-10 rounded-full border-2 border-emerald-400  shadow-emerald-400">
+              <h3 class="font-bold">User 2<br><span class="text-sm text-gray-400 font-normal">Level 1</span></h3>
+            </div>
+            <p class="text-gray-600 mt-2">
+                {{ reply.content }}
+            </p>
+          </div>
+        </div>
+      </template>
     </div>
-    <template
-      v-if="qstatus == 'open'"
-    >
-      <textarea
-        v-model="repliesFrom[answer.id]"
-      ></textarea>
-      <br />
-      <button
-        type="button"
-        @click="clickReply(answer.id)"
-      >返信</button>
-    </template>
-    <hr />
   </div>
 </template>
 
@@ -44,7 +85,8 @@ export default defineComponent({
       id: location.pathname.split('/').pop(),
       answers: [] as Answer[],
       qstatus: '' as string,
-      repliesFrom: [],
+      repliesFrom: [] as string[],
+      repliesFromShow: [] as boolean[],
     }
   },
   async created() {
@@ -55,6 +97,7 @@ export default defineComponent({
     async clickReply(id) {
       const text = this.repliesFrom[id]
       await this.postReply(id, text)
+      this.repliesFrom[id] = ''
       this.answers = await this.getAnswer()
     },
     async getQuestion(): Promise<Question[]> {
