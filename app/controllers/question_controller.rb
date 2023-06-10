@@ -53,7 +53,7 @@ class QuestionController < ApplicationController
     end
     @question.increment!(:view_cnt)
     @user = User.find @question.user_id
-    @history = QuestionCntHistory.find_by({ :user_id => current_user.id, :question_id => @question.id })
+    @history = QuestionCntHistory.find_by({ :user_id => current_user.id, :question_id => @question.id }) unless current_user.nil?
   rescue
     redirect_to root_path
   end

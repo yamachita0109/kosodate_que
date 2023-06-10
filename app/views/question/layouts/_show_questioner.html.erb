@@ -1,3 +1,12 @@
 <% if current_user.present? and current_user.id == @question.user_id %>
-  <%= link_to '変更', edit_question_path(@question.hashid) %>
+  <div class="p-8 m-2 w-full bg-blue-50 border border-blue-400 rounded-md">
+    <%=
+      link_to '質問を変更する',
+      edit_question_path(@question.hashid),
+      class: "text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded text-lg"%>
+    <%=
+      link_to '質問を解決にする',
+      edit_question_path(@question.hashid),
+      class: "text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded text-lg"%>
+  </div>
 <% end %>
