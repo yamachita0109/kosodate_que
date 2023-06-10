@@ -85,7 +85,7 @@ class QuestionController < ApplicationController
     answer = Answer.create! param
     @question.increment!(:answer_cnt)
     UserMailer.send_post_answer(@question, answer).deliver_now
-    show_notice ['コメントしました']
+    show_notice ['回答しました']
     redirect_to question_path params[:id]
   rescue ActiveRecord::RecordInvalid => e
     show_alert e.record.errors.full_messages
