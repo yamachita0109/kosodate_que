@@ -70,7 +70,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_10_134232) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.string "name"
+    t.string "name", default: "名無し", null: false
     t.text "content"
     t.string "logo", default: "/img/no_icon.jpg", null: false
     t.string "twitter_id"

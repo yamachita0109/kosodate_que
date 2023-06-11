@@ -1,23 +1,33 @@
 <template>
   <div class="flex flex-col gap-5 m-3">
-    <!-- Comment Container -->
     <div
       v-for="answer in answers"
       :key="answer.id"
     >
       <div
         class="flex w-full justify-between border rounded-md"
+        :class="{ 'bg-green-100 border border-green-400 text-green-700': answer.is_best_answer }"
       >
         <div class="p-3 w-full">
-          <div class="flex gap-3 items-center">
-            <img src="https://avatars.githubusercontent.com/u/22263436?v=4" class="object-cover w-10 h-10 rounded-full border-2 border-emerald-400  shadow-emerald-400">
-            <h3 class="font-bold">
-              User 1
-              <br>
-              <span class="text-sm text-gray-400 font-normal">2023/06/09 23:29</span>
-            </h3>
+          <div
+            class="flex gap-3 items-center"
+            v-if="answer.is_best_answer"
+          >
+            <svg version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" style="width: 48px; height: 48px; opacity: 1;" xml:space="preserve"><g><path class="st0" d="M512,180.219c0-21.484-17.422-38.891-38.906-38.891c-21.469,0-38.891,17.406-38.891,38.891c0,10.5,4.172,20,10.938,27c-26.453,54.781-77.016,73.891-116.203,56.578c-34.906-15.422-47.781-59.547-52.141-93.734c14.219-7.5,23.922-22.406,23.922-39.594c0-24.719-20.016-44.734-44.719-44.734c-24.719,0-44.734,20.016-44.734,44.734c0,17.188,9.703,32.094,23.938,39.594c-4.359,34.188-17.25,78.313-52.141,93.734C143.875,281.109,93.328,262,66.859,207.219c6.75-7,10.938-16.5,10.938-27c0-21.484-17.422-38.891-38.906-38.891S0,158.734,0,180.219c0,19.766,14.734,36.031,33.813,38.531l55.75,207.516h332.875l55.75-207.516C497.25,216.25,512,199.984,512,180.219z" style="fill: rgb(32,197,94);"></path></g></svg>
+            <span class="font-bold">ベストアンサー</span>
           </div>
-          {{ answer.is_best_answer ? 'ベストアンサー' : '' }}
+          <div class="flex gap-3 items-center">
+            <a :href=profilePath(answer.user_id) class="inline-flex items-center">
+              <img :src=userImgPath(answer.user_id) class="w-8 h-8 rounded-full flex-shrink-0 object-cover object-center">
+              <span class="flex-grow flex flex-col pl-3">
+                <span class="font-bold text-gray-900">
+                  {{ answer.user_name }}
+                  <br/>
+                  <span class="text-sm text-gray-400 font-normal">{{ formatDate(answer.created_at) }}</span>
+                </span>
+              </span>
+            </a>
+          </div>
           <div
             v-html="answer.content.replace(/\n/g, '<br>')"
             class="text-gray-600 mt-2"
@@ -57,8 +67,17 @@
         <div class="flex justify-between border ml-5  rounded-md">
           <div class="p-3">
             <div class="flex gap-3 items-center">
-              <img src="https://avatars.githubusercontent.com/u/22263436?v=4" class="object-cover w-10 h-10 rounded-full border-2 border-emerald-400  shadow-emerald-400">
-              <h3 class="font-bold">User 2<br><span class="text-sm text-gray-400 font-normal">Level 1</span></h3>
+
+              <a :href=profilePath(reply.user_id) class="inline-flex items-center">
+                <img :src=userImgPath(reply.user_id) class="w-8 h-8 rounded-full flex-shrink-0 object-cover object-center">
+                <span class="flex-grow flex flex-col pl-3">
+                  <span class="font-bold  text-gray-900">
+                    {{ reply.user_name }}
+                    <br/>
+                    <span class="text-sm text-gray-400 font-normal">{{ formatDate(reply.created_at) }}</span>
+                  </span>
+                </span>
+              </a>
             </div>
             <p class="text-gray-600 mt-2">
                 {{ reply.content }}
@@ -73,6 +92,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import axios from 'axios'
+import dayjs from "dayjs"
 import { Answer } from '../../../@types/answer'
 import { Question } from '../../../@types/question'
 
@@ -110,6 +130,15 @@ export default defineComponent({
     },
     async postReply(id, text) {
       await axios.post('/api/reply', { answer_id: id, content: text })
+    },
+    profilePath(id) {
+      return `/profile/${id}`
+    },
+    userImgPath(id) {
+      return `/user/${id}.jpg`
+    },
+    formatDate(date) {
+      return dayjs(date).format('YYYY/MM/DD HH:mm')
     }
   },
 })

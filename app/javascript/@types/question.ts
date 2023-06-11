@@ -1,5 +1,5 @@
 export type Question = {
-  id: number;
+  id: string;
   title: string;
   tags: string;
   content: string;
@@ -8,6 +8,6 @@ export type Question = {
   view_cnt: number;
   answer_cnt: number;
   status: string;
-  user_id: number;
+  user_id: string;
   created_at: string;
 };

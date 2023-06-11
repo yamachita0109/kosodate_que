@@ -33,7 +33,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       # t.datetime :locked_at
 
       ## 追加
-      t.string :name
+      t.string :name, null: false, default: "名無し"
       t.text :content
       t.string :logo, null: false, default: "/img/no_icon.jpg"
       t.string :twitter_id

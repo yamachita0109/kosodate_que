@@ -1,17 +1,20 @@
 export type Answer = {
-  id: number;
-  question_id: number;
+  id: string;
+  question_id: string;
   content: string;
   good_cnt: number;
   bad_cnt: number;
   is_best_answer: boolean;
-  user_id: number;
+  user_id: string;
+  user_name: string;
   created_at: string;
   replies: Reply[];
 };
 
 export type Reply = {
-  id: number;
+  id: string;
   content: string;
-  user_id: number;
+  user_id: string;
+  user_name: string;
+  created_at: string;
 };

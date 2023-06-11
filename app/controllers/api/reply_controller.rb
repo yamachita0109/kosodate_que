@@ -5,6 +5,7 @@ module Api
     def post
       param = api_param
       param[:user_id] = current_user.id
+      param[:answer_id] = Answer.decode_id(param[:answer_id])
       answer = Answer.find(param[:answer_id])
       reply = Reply.create! param
       question = Question.find answer.question_id
