@@ -6,11 +6,11 @@
   <%= form.submit '解決' %>
   <br />
   <p>ベストアンサー</p>
-  <% @answer.each do |answer| %>
-    <%= form.radio_button(:answer_id, answer.id) %>
-    <%= form.label(:answer_id, answer.content ,value: answer.id)  %>
+  <%# <% @answer.each do |answer| %>
+    <%# <%= form.radio_button(:answer_id, answer.id) %>
+    <%# <%= form.label(:answer_id, answer.content ,value: answer.id)  %>
     <br />
-  <% end %>
+  <%# <% end %>
 <% end %>
 <hr />
 

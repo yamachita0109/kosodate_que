@@ -13,13 +13,21 @@ class ApplicationController < ActionController::Base
     render template: 'errors/500', status: 500, layout: 'application', content_type: 'text/html'
   end
 
-  def show_notice(messages)
-    # TODO レイアウト
-    flash[:notice] = messages.join('<br>')
+  def show_notice(messages, now = false)
+    meg = messages.join('<br>')
+    if now
+      flash.now[:notice] = meg
+    else
+      flash[:notice] = meg
+    end
   end
 
-  def show_alert(messages)
-    # TODO レイアウト
-    flash[:alert] = messages.join('<br>')
+  def show_alert(messages, now = false)
+    meg = messages.join('<br>')
+    if now
+      flash.now[:alert] = meg
+    else
+      flash[:alert] = meg
+    end
   end
 end

@@ -17,13 +17,15 @@ class QuestionController < ApplicationController
   def create
     param = web_params
     param[:user_id] = current_user.id
-    question = Question.create! param
-    UserMailer.send_post_question(question).deliver_now if question.open?
-    show_notice [question.open? ? '投稿しました' : '下書き登録しました']
-    redirect_to question_path question.hashid
-  rescue ActiveRecord::RecordInvalid => e
-    show_alert e.record.errors.full_messages
-    redirect_to action: :new
+    @question = Question.new param
+    if @question.save
+      UserMailer.send_post_question(@question).deliver_now if @question.open?
+      show_notice [@question.open? ? '投稿しました' : '下書き登録しました']
+      redirect_to question_path @question.hashid
+    else
+      show_alert(@question.errors.full_messages, true)
+      render :new
+    end
   end
 
   def edit
@@ -69,13 +71,14 @@ class QuestionController < ApplicationController
       answer.update!({:is_best_answer => true})
       param.delete :answer_id
     end
-    @question.update! param
-    UserMailer.send_post_question(@question).deliver_now if @question.open?
-    show_notice ['更新しました']
-    redirect_to action: :show
-  rescue ActiveRecord::RecordInvalid => e
-    show_alert e.record.errors.full_messages
-    redirect_to action: :edit
+    if @question.update param
+      UserMailer.send_post_question(@question).deliver_now if @question.open?
+      show_notice ['更新しました']
+      redirect_to action: :show
+    else
+      show_alert(@question.errors.full_messages, true)
+      render action: :edit
+    end
   end
 
   def post_answer
