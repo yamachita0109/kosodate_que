@@ -1,14 +1,11 @@
 import { createApp } from 'vue'
 import Tags from '../../shared/Tags.vue'
-import BestAnswer from './BestAnswer.vue'
+import BestAnswer from '../shared/BestAnswer.vue'
 
 function build() {
   document.addEventListener('DOMContentLoaded', () => {
-    const input = document.querySelector('#question_tags')
-    createApp(Tags, { inputForm: input }).mount('#vue-tags')
-
-    createApp(BestAnswer, { inputForm: input }).mount('#vue-best-answer')
-
+    createApp(Tags, { inputForm: document.querySelector('#question_tags') }).mount('#vue-tags')
+    createApp(BestAnswer, { inputForm: document.querySelector('#question_answer_id') }).mount('#vue-best-answer')
   })
 }
 

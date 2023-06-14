@@ -53,7 +53,7 @@ class QuestionController < ApplicationController
       render_404
       return
     end
-    @question.increment!(:view_cnt)
+    @question.increment!(:view_cnt) if @question.open?
     @user = User.find @question.user_id
     @history = QuestionCntHistory.find_by({ :user_id => current_user.id, :question_id => @question.id }) unless current_user.nil?
   rescue
@@ -66,14 +66,16 @@ class QuestionController < ApplicationController
       return
     end
     param = web_params
+    msg = '更新しました'
     if param[:answer_id].present?
-      answer = Answer.find_by(id: param[:answer_id], question_id: @question.id)
+      answer = Answer.find_by_hashid param[:answer_id]
       answer.update!({:is_best_answer => true})
       param.delete :answer_id
+      msg = '解決にしました'
     end
     if @question.update param
       UserMailer.send_post_question(@question).deliver_now if @question.open?
-      show_notice ['更新しました']
+      show_notice [msg]
       redirect_to action: :show
     else
       show_alert(@question.errors.full_messages, true)

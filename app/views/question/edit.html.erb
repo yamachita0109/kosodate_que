@@ -1,24 +1,10 @@
 <% content_for :title, '質問編集' %>
 
-<%= form_with model: @question, url: question_path, local: true, method: :put do |form| %>
-  <%= form.hidden_field :status, :value => 'done' %>
-  <%= form.submit '解決' %>
-  <br />
-  <p>ベストアンサー</p>
-  <%# <% @answer.each do |answer| %>
-    <%# <%= form.radio_button(:answer_id, answer.id) %>
-    <%# <%= form.label(:answer_id, answer.content ,value: answer.id)  %>
-    <br />
-  <%# <% end %>
-<% end %>
-<hr />
-
 <div class="container mx-auto flex flex-wrap py-6">
   <section class="w-full md:w-3/4 flex flex-col px-3">
-    <div id="vue-best-answer"></div>
+    <%= render partial: 'question/layouts/edit_best_answer', locals: { h1: '質問を編集する' } %>
     <%= render partial: 'layouts/h1', locals: { h1: '質問を編集する' } %>
     <%= form_with model: @question, url: question_path, local: true, method: :put do |form| %>
-
       <div class="relative mb-4">
         <label class="leading-7 text-sm text-gray-600">タイトル</label>
         <%=
@@ -57,7 +43,7 @@
 
       <button
         type="submit"
-        class="text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg"
+        class="text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg focus:ring-4 focus:outline-none focus:ring-green-300"
       >更新する</button>
     <% end %>
   </section>

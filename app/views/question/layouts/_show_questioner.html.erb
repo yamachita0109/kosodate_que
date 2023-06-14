@@ -1,14 +1,16 @@
-<% if current_user.present? and current_user.id == @question.user_id %>
-  <div class="p-8 m-2 my-8 w-full bg-blue-50 border border-blue-400 rounded-md flex">
-    <%=
-      link_to '質問を編集する',
-      edit_question_path(@question.hashid),
-      class: "text-white bg-blue-500 border-0 py-2 px-6 mr-2 focus:outline-none hover:bg-blue-600 rounded text-lg"%>
-    <% if @question.open? %>
+<% unless @question.done? %>
+  <% if current_user.present? and current_user.id == @question.user_id %>
+    <div class="p-8 m-2 my-8 w-full bg-blue-50 border border-blue-400 rounded-md flex">
       <%=
-        link_to '質問を解決した',
+        link_to '質問を編集する',
         edit_question_path(@question.hashid),
-        class: "text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded text-lg"%>
-    <% end %>
-  </div>
+        class: "text-white bg-blue-500 border-0 py-2 px-6 mr-2 focus:outline-none hover:bg-blue-600 rounded text-lg"%>
+      <% if @question.open? %>
+        <%=
+          link_to '質問を解決した',
+          edit_question_path(@question.hashid),
+          class: "text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded text-lg"%>
+      <% end %>
+    </div>
+  <% end %>
 <% end %>

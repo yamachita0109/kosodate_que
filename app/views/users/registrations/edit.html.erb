@@ -49,7 +49,7 @@
       </div>
       <button
         type="submit"
-        class="text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg"
+        class="text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg focus:ring-4 focus:outline-none focus:ring-green-300"
       >変更する</button>
     <% end %>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
@@ -59,7 +59,7 @@
           registration_path(resource_name),
           data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" },
           method: :delete,
-          class: "mr-5 text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg"
+          class: "mr-5 text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg focus:ring-4 focus:outline-none focus:ring-red-300"
         %>
       </div>
     <% end %>

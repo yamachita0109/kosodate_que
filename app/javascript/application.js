@@ -3,6 +3,7 @@ import "@hotwired/turbo-rails"
 Turbo.session.drive = false
 import "controllers"
 
+import './dist/main.js'
 import './dist/question/show/main.js'
 import './dist/question/edit/main.js'
 import './dist/question/new/main.js'
