@@ -31,7 +31,9 @@
   <body class="bg-white font-family-karla">
     <%= render partial: 'layouts/alert' %>
     <%= render partial: 'layouts/header' %>
-    <%= yield %>
+    <main class="mt-24">
+      <%= yield %>
+    </main>
     <%= render partial: 'layouts/footer' %>
   </body>
 </html>
