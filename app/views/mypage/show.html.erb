@@ -1,51 +1,66 @@
 <% content_for :title, 'マイページ' %>
 
-<h1>Mypage#show</h1>
-email: <%= current_user.email %>
-<br />
-pass: ⚫︎⚫︎⚫︎⚫︎⚫︎⚫︎⚫︎⚫︎⚫︎
-<br />
-<%= button_to '変更', edit_user_registration_path, method: :get %>
-<hr />
-logo: <%= current_user.logo.nil? ? '-' : current_user.logo %>
-<% unless current_user.logo.nil? %>
-  <%= image_tag current_user.logo, size: '64x64' %>
-<% end %>
+<section class="container md:w-3/4 lg:w-1/2 mx-auto flex flex-wrap">
 
-<%= form_with url: mypage_update_logo_path, local: true, multipart: true do |form| %>
-  <div id="vue-img-upload"></div>
-<% end %>
+  <div class="w-full md:w-1/2 flex flex-col">
+    <div class=" bg-white shadow m-4 p-4">
+      logo: <%= current_user.logo.nil? ? '-' : current_user.logo %>
+      <% unless current_user.logo.nil? %>
+      <%= image_tag current_user.logo, size: '64x64' %>
+      <% end %>
 
-<br />
-<hr />
-<%= button_to '登録', mypage_edit_path, method: :get %>
-name: <%= current_user.name.nil? ? '-' : current_user.name %>
-<br />
-text: <%= current_user.content.nil? ? '-' : current_user.content %>
-<br />
-twitter_id: <%= current_user.twitter_id.nil? ? '-' : current_user.twitter_id %>
-<br />
-instagram_id: <%= current_user.instagram_id.nil? ? '-' : current_user.instagram_id %>
-<br />
-facebook_id: <%= current_user.facebook_id.nil? ? '-' : current_user.facebook_id %>
+      <%= form_with url: mypage_update_logo_path, local: true, multipart: true do |form| %>
+      <div id="vue-img-upload"></div>
+      <% end %>
+    </div>
+  </div>
 
-<hr />
-wip
-<% @questions.each do |question| %>
-<ul>
-  <li><%= question.id %></li>
-  <li><%= link_to '変更', edit_question_path(question.hashid) %></li>
-  <li><%= question.title %></li>
-  <li><%= question.tags %></li>
-  <li><%= question.content %></li>
-  <li><%= question.view_cnt %></li>
-  <li><%= question.answer_cnt %></li>
-  <li><%= question.status %></li>
-  <li><%= question.user_id %></li>
-  <li><%= question.user_name %></li>
-  <li><%= image_tag question.user_logo, size: '64x64' %></li>
-  <li><%= question.user_twitter_id %></li>
-  <li><%= question.user_instagram_id %></li>
-  <li><%= question.user_facebook_id %></li>
-</ul>
-<% end %>
+  <div class="w-full md:w-1/2 flex flex-col">
+    <div class=" bg-white shadow m-4 p-4">
+      email: <%= current_user.email %>
+      <br />
+      pass: ⚫︎⚫︎⚫︎⚫︎⚫︎⚫︎⚫︎⚫︎⚫︎
+      <br />
+      <%= button_to '変更', edit_user_registration_path, method: :get %>
+    </div>
+  </div>
+
+  <div class="w-full flex flex-col">
+    <div class=" bg-white shadow m-4 p-4">
+      <%= button_to '登録', mypage_edit_path, method: :get %>
+      name: <%= current_user.name.nil? ? '-' : current_user.name %>
+      <br />
+      text: <%= current_user.content.nil? ? '-' : current_user.content %>
+      <br />
+      twitter_id: <%= current_user.twitter_id.nil? ? '-' : current_user.twitter_id %>
+      <br />
+      instagram_id: <%= current_user.instagram_id.nil? ? '-' : current_user.instagram_id %>
+      <br />
+      facebook_id: <%= current_user.facebook_id.nil? ? '-' : current_user.facebook_id %>
+    </div>
+  </div>
+
+  <div class="w-full flex flex-col">
+    <div class=" bg-white shadow m-4 p-4">
+      wip
+      <% @questions.each do |question| %>
+      <ul>
+      <li><%= question.id %></li>
+      <li><%= link_to '変更', edit_question_path(question.hashid) %></li>
+      <li><%= question.title %></li>
+      <li><%= question.tags %></li>
+      <li><%= question.content %></li>
+      <li><%= question.view_cnt %></li>
+      <li><%= question.answer_cnt %></li>
+      <li><%= question.status %></li>
+      <li><%= question.user_id %></li>
+      <li><%= question.user_name %></li>
+      <li><%= image_tag question.user_logo, size: '64x64' %></li>
+      <li><%= question.user_twitter_id %></li>
+      <li><%= question.user_instagram_id %></li>
+      <li><%= question.user_facebook_id %></li>
+      </ul>
+      <% end %>
+    </div>
+  </div>
+</section>
