@@ -16,9 +16,7 @@
     class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
   >
     <div class="relative w-full max-w-2xl max-h-full">
-      <!-- Modal content -->
       <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-        <!-- Modal header -->
         <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
           <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
             質問を解決
@@ -28,7 +26,6 @@
             <span class="sr-only">Close modal</span>
           </button>
         </div>
-        <!-- Modal body -->
         <div class="p-6 space-y-6">
           <p class="text-xl font-semibold text-gray-900 dark:text-white">
             ベストアンサーを選ぶ
@@ -55,14 +52,16 @@
                 class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-green-500 peer-checked:border-green-600 peer-checked:text-green-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
               >
                 <div class="block">
-                  <div class="w-full text-lg font-semibold">{{ answer.user_name }}</div>
+                  <div class="w-full text-lg font-semibold flex gap-3 items-center mb-4">
+                    <img :src=userImgPath(answer.user_id) class="w-8 h-8 rounded-full flex-shrink-0 object-cover object-center" />
+                    {{ answer.user_name }}
+                  </div>
                   <div class="w-full">{{ answer.content }}</div>
                 </div>
               </label>
             </li>
           </ul>
         </div>
-        <!-- Modal footer -->
         <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
           <button
             type="submit"
@@ -108,7 +107,10 @@ export default defineComponent({
     },
     selectAnswer(e) {
       this.inputForm.value = e.target.value || null
-    }
+    },
+    userImgPath(id) {
+      return `/user/${id}.jpg`
+    },
   },
 })
 </script>
