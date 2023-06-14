@@ -82,6 +82,7 @@ gem 'dotenv-rails'
 gem 'rmagick', '~> 4.2'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
+gem 'aws-sdk-s3'
 gem 'aws-sdk-rails'
 gem "tailwindcss-rails", "~> 2.0"
 gem 'httparty'

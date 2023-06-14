@@ -27,13 +27,12 @@ class MypageController < ApplicationController
     logo = params[:logo]
     uri = URI.parse(logo)
     data = decode(uri)
-    path = "public/user/#{current_user.hashid}.jpg"
-    File.binwrite(path, data)
-    img = Magick::ImageList.new(path)
-    new_img = img.resize_to_fit(300, 300)
-    new_img.write(path)
-    param = { :logo => "/user/#{current_user.hashid}.jpg" }
-    User.find(current_user.id).update! param
+    key = "user/#{current_user.hashid}.jpg"
+    url = "http://#{ENV['AWS_CDN_BUCKET']}.s3-website-ap-northeast-1.amazonaws.com/#{key}"
+    User.find(current_user.id).update!({ :logo => url })
+    s3 = Aws::S3::Resource.new(region: Rails.application.config.aws_region)
+    obj = s3.bucket(Rails.application.config.aws_bucket).object(key)
+    obj.put( body: data )
     show_notice ['ロゴ画像を登録しました']
     redirect_to action: :show
   rescue ActiveRecord::RecordInvalid => e
