@@ -31,7 +31,7 @@
         <div
           v-show="!answer"
           class="p-6 space-y-6 text-center"
-      >
+        >
           <p
             class="font-medium text-base px-5 py-2.5 text-center mr-2 inline-flex items-center text-rose-600"
           >
