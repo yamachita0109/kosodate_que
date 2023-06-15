@@ -1,26 +1,4 @@
 module QuestionHelper
-  def question_status(question)
-    text = ''
-    color = ''
-    if question.wip?
-      text = '下書き'
-      color = 'yellow'
-    end
-    if question.open?
-      text = '質問中'
-      color = 'indigo'
-    end
-    if question.done?
-      text = '解決済'
-      color = 'red'
-    end
-    if question.del?
-      text = '取下げ'
-      color = 'gray'
-    end
-    "<span class='py-1 px-2 rounded bg-#{color}-100 text-#{color}-500 text-xs font-medium tracking-widest mb-2'>#{text}</span>"
-  end
-
   def question_content(content)
     if content.length > 60
       content[0...60] + "..."

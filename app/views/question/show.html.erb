@@ -7,7 +7,7 @@
     <%= render partial: 'question/layouts/show_questioner' %>
 
     <div class="flex">
-      <%= question_status(@question).html_safe %>
+      <%= render partial: 'layouts/status', locals: { question: @question } %>
     </div>
 
     <%= render partial: 'layouts/h1', locals: { h1: @question.title } %>
