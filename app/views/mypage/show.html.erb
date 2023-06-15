@@ -1,16 +1,11 @@
 <% content_for :title, 'マイページ' %>
 
 <section class="container md:w-3/4 lg:w-1/2 mx-auto flex flex-wrap">
-
   <div class="w-full md:w-1/2 flex flex-col">
-    <div class=" bg-white shadow m-4 p-4">
-      logo: <%= current_user.logo.nil? ? '-' : current_user.logo %>
-      <% unless current_user.logo.nil? %>
-      <%= image_tag current_user.logo, size: '64x64' %>
-      <% end %>
-
+    <div class="bg-white shadow m-4 p-4 flex flex-col items-center">
+      <img class="w-20 h-20 rounded-full mb-3" src="<%= current_user.logo %>" alt="logo">
       <%= form_with url: mypage_update_logo_path, local: true, multipart: true do |form| %>
-      <div id="vue-img-upload"></div>
+        <div id="vue-img-upload"></div>
       <% end %>
     </div>
   </div>

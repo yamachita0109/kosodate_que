@@ -1,6 +1,41 @@
 <template>
+  <div class="p-5 text-center">
+    <button
+      type="button"
+      @click="clickChgIcon()"
+      class="inline-flex text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-base"
+    >画像を変更する</button>
+  </div>
+  <div
+    ref="modal"
+    tabindex="-1"
+    aria-hidden="true"
+    class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
+  >
+    <div class="relative w-full max-w-2xl max-h-full">
+      <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+        <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+          <h3 class="text-xl font-semibold text-green-600 dark:text-white">
+            画像を変更する
+          </h3>
+          <button
+            type="button"
+            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+            @click="clickClose"
+          >
+            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+            <span class="sr-only">Close modal</span>
+          </button>
+        </div>
+
+        <div class="p-6 space-y-6">
+          <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+
+
+
+
+
   <div>
-    <h3>画像を選択</h3>
     <input
       type="file"
       accept="image/*"
@@ -52,6 +87,21 @@
     >
   </div>
 
+
+
+          </p>
+        </div>
+
+        <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+          <button
+            type="button"
+            class="text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg focus:ring-4 focus:outline-none focus:ring-green-300"
+            @click="clickClose"
+          >閉じる</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -61,6 +111,8 @@ import '~/../../../node_modules/cropperjs/dist/cropper.js'
 import '~/../../../node_modules/cropperjs/dist/cropper.css'
 import VueCropper from 'vue-cropperjs';
 import 'cropperjs/dist/cropper.css';
+import { Modal } from 'flowbite'
+import type { ModalInterface } from 'flowbite'
 
 // TODO リファクタリング
 export default defineComponent({
@@ -69,14 +121,23 @@ export default defineComponent({
   },
   data() {
     return {
+      modal: null as unknown as ModalInterface,
       imgSrc: null as any,
       filename: null as any,
       cropImg: null as any
     }
   },
   mounted() {
+    const modal: HTMLElement = (this.$refs.modal as HTMLElement)
+    this.modal = new Modal(modal)
   },
   methods: {
+    clickChgIcon() {
+      this.modal.show()
+    },
+    clickClose() {
+      this.modal.hide()
+    },
     setImage(e) {
       const file = e.target.files[0]
       this.filename = file.name
