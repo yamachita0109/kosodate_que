@@ -1,17 +1,62 @@
-<% content_for :title, 'マイページ編集' %>
+<% content_for :title, 'プロフィール変更' %>
 
-<h1>Mypage#edit</h1>
-<%= form_with model: current_user, url: mypage_update_path, local: true do |form| %>
-  name: <%= form.text_field :name %>
-  <br />
-  text: <%= form.text_area :content %>
-  <br />
-  twitter_id: <%= form.text_field :twitter_id %>
-  <br />
-  instagram_id: <%= form.text_field :instagram_id %>
-  <br />
-  facebook_id: <%= form.text_field :facebook_id %>
-  <br />
+<div class="container px-5 py-24 mx-auto">
+  <section class="lg:w-1/2 md:w-2/3 mx-auto">
+    <%= render partial: 'layouts/h1', locals: { h1: 'プロフィール変更' } %>
+    <%= form_with model: current_user, url: mypage_update_path, local: true do |form| %>
+      <div class="relative mb-8">
+        <label class="leading-7 text-sm text-gray-600">表示名</label>
+        <%=
+          form.text_field :name,
+          class: "w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+        %>
+      </div>
 
-  <%= form.submit %>
-<% end %>
+      <div class="relative mb-8">
+        <label class="leading-7 text-sm text-gray-600">自己紹介</label>
+        <%=
+          form.text_area :content,
+          maxlength: 2000,
+          class: "w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 h-96 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
+        %>
+      </div>
+
+      <div class="relative mb-8">
+        <label class="leading-7 text-sm text-gray-600">Tweeter ID</label>
+        <%=
+          form.text_field :twitter_id,
+          class: "w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+        %>
+      </div>
+
+      <div class="relative mb-8">
+        <label class="leading-7 text-sm text-gray-600">Instagram ID</label>
+        <%=
+          form.text_field :instagram_id,
+          class: "w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+        %>
+      </div>
+
+      <div class="relative mb-8">
+        <label class="leading-7 text-sm text-gray-600">Facebook ID</label>
+        <%=
+          form.text_field :facebook_id,
+          class: "w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+        %>
+      </div>
+
+      <div class="relative mb-8">
+        <label class="leading-7 text-sm text-gray-600">自身で運営しているサイト・ブログ</label>
+        <%=
+          form.text_field :site_url,
+          class: "w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+        %>
+      </div>
+
+      <button
+        type="submit"
+        class="text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg focus:ring-4 focus:outline-none focus:ring-green-300"
+      >変更する</button>
+    <% end %>
+  </section>
+</div>

@@ -16,7 +16,7 @@ class MypageController < ApplicationController
   def update
     param = web_params
     User.find(current_user.id).update! param
-    show_notice ['更新しました']
+    show_notice ['変更しました']
     redirect_to action: :show
   rescue ActiveRecord::RecordInvalid => e
     show_alert e.record.errors.full_messages
@@ -42,7 +42,7 @@ class MypageController < ApplicationController
 
   private
   def web_params
-    params.require(:user).permit(:name, :content, :logo, :twitter_id, :instagram_id, :facebook_id)
+    params.require(:user).permit(:name, :content, :logo, :twitter_id, :instagram_id, :facebook_id, :site_url)
   end
 
   def decode(uri)

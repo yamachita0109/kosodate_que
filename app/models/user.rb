@@ -19,6 +19,8 @@ class User < ApplicationRecord
     length: { maximum: 200 }
   validates :facebook_id,
     length: { maximum: 200 }
+  validates :site_url,
+    length: { maximum: 200 }
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

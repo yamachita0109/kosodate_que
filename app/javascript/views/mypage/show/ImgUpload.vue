@@ -38,7 +38,7 @@
             >
 
             <div
-              v-if="imgSrc != null"
+              v-show="imgSrc != null"
               class="flex flex-col items-center mb-4"
             >
             <div
@@ -69,7 +69,7 @@
             </div>
 
             <div
-              v-if="cropImg != null"
+              v-show="cropImg != null"
               class="flex flex-col items-center mb-4"
             >
               <img

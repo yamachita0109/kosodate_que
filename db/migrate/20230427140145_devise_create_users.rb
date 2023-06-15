@@ -39,6 +39,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       t.string :twitter_id
       t.string :instagram_id
       t.string :facebook_id
+      t.string :site_url
 
       t.timestamps null: false
     end
