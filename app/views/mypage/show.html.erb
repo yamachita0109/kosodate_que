@@ -5,107 +5,12 @@
     <%= render partial: 'layouts/h1', locals: { h1: 'マイページ' } %>
   </div>
 
-  <div class="w-full md:w-1/2 flex flex-col">
-    <div class="bg-white shadow m-4 p-4 flex flex-col items-center">
-      <img class="w-28 h-28 rounded-full mb-3" src="<%= current_user.logo %>" alt="logo">
-      <%= form_with url: mypage_update_logo_path, local: true, multipart: true do |form| %>
-        <div id="vue-img-upload">
-          <div class="p-5 text-center">
-            <button
-              type="button"
-              class="inline-flex text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-base"
-            >画像を変更する</button>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  </div>
+  <%= render partial: 'mypage/layouts/show_logo' %>
 
-  <div class="w-full md:w-1/2 flex flex-col">
-    <div class=" bg-white shadow m-4 p-4">
-      <div class="relative mb-4">
-        <label class="leading-7 text-sm text-gray-600">メールアドレス</label>
-        <p
-          class="w-full bg-white rounded border-b border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8"
-        ><%= current_user.email %></p>
-      </div>
-      <div class="relative mb-4">
-        <label class="leading-7 text-sm text-gray-600">パスワード</label>
-        <p
-          class="w-full bg-white rounded border-b border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8"
-        >⚫︎⚫︎⚫︎⚫︎⚫︎⚫︎⚫︎⚫︎⚫︎</p>
-      </div>
-      <div class="p-5 text-center">
-        <%= button_to '変更する', edit_user_registration_path, method: :get, class: 'inline-flex text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-base' %>
-      </div>
-    </div>
-  </div>
+  <%= render partial: 'mypage/layouts/show_ipass' %>
 
-  <div class="w-full flex flex-col">
-    <div class=" bg-white shadow m-4 p-4">
-      <div class="relative mb-4">
-        <label class="leading-7 text-sm text-gray-600">表示名</label>
-        <p
-          class="w-full bg-white rounded border-b border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8"
-        ><%= current_user.name.blank? ? '-' : current_user.name %></p>
-      </div>
-      <div class="relative mb-4">
-        <label class="leading-7 text-sm text-gray-600">自己紹介</label>
-        <div
-          class="w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8"
-        ><%= current_user.content.blank? ? '-' : simple_format(h(current_user.content)) %></div>
-      </div>
-      <div class="relative mb-4">
-        <label class="leading-7 text-sm text-gray-600">Tweeter ID</label>
-        <p
-          class="w-full bg-white rounded border-b border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8"
-        ><%= current_user.twitter_id.blank? ? '-' : current_user.twitter_id %></p>
-      </div>
-      <div class="relative mb-4">
-        <label class="leading-7 text-sm text-gray-600">Instagram ID</label>
-        <p
-          class="w-full bg-white rounded border-b border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8"
-        ><%= current_user.instagram_id.blank? ? '-' : current_user.instagram_id %></p>
-      </div>
-      <div class="relative mb-4">
-        <label class="leading-7 text-sm text-gray-600">Facebook ID</label>
-        <p
-          class="w-full bg-white rounded border-b border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8"
-        ><%= current_user.facebook_id.blank? ? '-' : current_user.facebook_id %></p>
-      </div>
-      <div class="relative mb-4">
-        <label class="leading-7 text-sm text-gray-600">自身で運営しているサイト・ブログ</label>
-        <p
-          class="w-full bg-white rounded border-b border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8"
-        ><%= current_user.site_url.blank? ? '-' : current_user.site_url %></p>
-      </div>
-      <div class="p-5 text-center">
-        <%= button_to 'プロフィールを変更する', mypage_edit_path, method: :get, class: 'inline-flex text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-base' %>
-      </div>
-    </div>
-  </div>
+  <%= render partial: 'mypage/layouts/show_profile' %>
 
-  <div class="w-full flex flex-col">
-    <div class=" bg-white shadow m-4 p-4">
-      wip
-      <% @questions.each do |question| %>
-      <ul>
-      <li><%= question.id %></li>
-      <li><%= link_to '変更', edit_question_path(question.hashid) %></li>
-      <li><%= question.title %></li>
-      <li><%= question.tags %></li>
-      <li><%= question.content %></li>
-      <li><%= question.view_cnt %></li>
-      <li><%= question.answer_cnt %></li>
-      <li><%= question.status %></li>
-      <li><%= question.user_id %></li>
-      <li><%= question.user_name %></li>
-      <li><%= image_tag question.user_logo, size: '64x64' %></li>
-      <li><%= question.user_twitter_id %></li>
-      <li><%= question.user_instagram_id %></li>
-      <li><%= question.user_facebook_id %></li>
-      </ul>
-      <% end %>
-    </div>
-  </div>
+  <%= render partial: 'mypage/layouts/show_question' %>
+
 </section>

@@ -1,0 +1,43 @@
+<div class="w-full flex flex-col">
+  <div class=" bg-white shadow m-4 p-4">
+    <div class="relative mb-4">
+      <label class="leading-7 text-sm text-gray-600">表示名</label>
+      <p
+        class="w-full bg-white rounded border-b border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8"
+      ><%= current_user.name.blank? ? '-' : current_user.name %></p>
+    </div>
+    <div class="relative mb-4">
+      <label class="leading-7 text-sm text-gray-600">自己紹介</label>
+      <div
+        class="w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8"
+      ><%= current_user.content.blank? ? '-' : simple_format(h(current_user.content)) %></div>
+    </div>
+    <div class="relative mb-4">
+      <label class="leading-7 text-sm text-gray-600">Tweeter ID</label>
+      <p
+        class="w-full bg-white rounded border-b border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8"
+      ><%= current_user.twitter_id.blank? ? '-' : current_user.twitter_id %></p>
+    </div>
+    <div class="relative mb-4">
+      <label class="leading-7 text-sm text-gray-600">Instagram ID</label>
+      <p
+        class="w-full bg-white rounded border-b border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8"
+      ><%= current_user.instagram_id.blank? ? '-' : current_user.instagram_id %></p>
+    </div>
+    <div class="relative mb-4">
+      <label class="leading-7 text-sm text-gray-600">Facebook ID</label>
+      <p
+        class="w-full bg-white rounded border-b border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8"
+      ><%= current_user.facebook_id.blank? ? '-' : current_user.facebook_id %></p>
+    </div>
+    <div class="relative mb-4">
+      <label class="leading-7 text-sm text-gray-600">自身で運営しているサイト・ブログ</label>
+      <p
+        class="w-full bg-white rounded border-b border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8"
+      ><%= current_user.site_url.blank? ? '-' : current_user.site_url %></p>
+    </div>
+    <div class="p-5 text-center">
+      <%= button_to 'プロフィールを変更する', mypage_edit_path, method: :get, class: 'inline-flex text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-base' %>
+    </div>
+  </div>
+</div>
