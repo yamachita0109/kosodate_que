@@ -29,75 +29,66 @@
         </div>
 
         <div class="p-6 space-y-6">
-          <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+          <div class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+            <input
+              class="block w-full mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+              type="file"
+              accept="image/*"
+              @change="setImage"
+            >
 
+            <div
+              v-if="imgSrc != null"
+              class="flex flex-col items-center mb-4"
+            >
+            <div
+                style="width: 200px; height:200px; border: 1px solid gray; display: block;"
+                class="mb-4"
+              >
+                <vue-cropper
+                  ref="cropper"
+                  :guides="true"
+                  :view-mode="2"
+                  drag-mode="crop"
+                  :auto-crop-area="0.5"
+                  :min-container-width="200"
+                  :min-container-height="200"
+                  :background="true"
+                  :rotatable="false"
+                  :src="imgSrc"
+                  :img-style="{ 'width': '200px', 'height': '200px' }"
+                  :aspect-ratio="2 / 2"
+                >
+                </vue-cropper>
+              </div>
+              <button
+                type="button"
+                class="text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg focus:ring-4 focus:outline-none focus:ring-green-300"
+                @click="cropImage"
+              >トリミングする</button>
+            </div>
 
-
-
-
-  <div>
-    <input
-      type="file"
-      accept="image/*"
-      @change="setImage"
-    >
-    <br>
-    <div
-      v-if="imgSrc != null"
-      style="width: 200px; height:200px; border: 1px solid gray; display: inline-block;"
-    >
-      <vue-cropper
-        ref="cropper"
-        :guides="true"
-        :view-mode="2"
-        drag-mode="crop"
-        :auto-crop-area="0.5"
-        :min-container-width="200"
-        :min-container-height="200"
-        :background="true"
-        :rotatable="false"
-        :src="imgSrc"
-        :img-style="{ 'width': '200px', 'height': '200px' }"
-        :aspect-ratio="2 / 2"
-      >
-      </vue-cropper>
-    </div>
-    <br>
-
-    <button
-      type="button"
-      @click="cropImage"
-      v-if="imgSrc != null"
-    >トリミングする</button>
-
-    <div
-      v-if="cropImg != null"
-    >
-      <img
-        :src="cropImg"
-        style="width: 200px; height: 200px; border: 1px solid gray;"
-        alt="Cropped Image"
-      >
-      <button type="submit">画像を登録</button>
-    </div>
-    <input
-      ref="logo"
-      type="hidden"
-      name="logo"
-    >
-  </div>
-
-
-
-          </p>
-        </div>
-
-        <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-          <button
-            type="button"
-            class="text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg focus:ring-4 focus:outline-none focus:ring-green-300"
-            @click="clickClose"
-          >閉じる</button>
+            <div
+              v-if="cropImg != null"
+              class="flex flex-col items-center mb-4"
+            >
+              <img
+                :src="cropImg"
+                style="width: 200px; height: 200px; border: 1px solid gray;"
+                alt="Cropped Image"
+                class="mb-4"
+              >
+              <button
+                type="submit"
+                class="text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg focus:ring-4 focus:outline-none focus:ring-green-300"
+              >この画像を登録</button>
+              <input
+                ref="logo"
+                type="hidden"
+                name="logo"
+              >
+            </div>
+          </div>
         </div>
       </div>
     </div>
