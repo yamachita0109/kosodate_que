@@ -65,14 +65,16 @@ class QuestionController < ApplicationController
       redirect_to question_path params[:id]
       return
     end
+
     param = web_params
     msg = '更新しました'
     if param[:answer_id].present?
       answer = Answer.find_by_hashid param[:answer_id]
       answer.update!({:is_best_answer => true})
-      param.delete :answer_id
       msg = '解決にしました'
     end
+    param.delete :answer_id
+
     if @question.update param
       UserMailer.send_post_question(@question).deliver_now if @question.open?
       show_notice [msg]

@@ -6,8 +6,18 @@ module Api
       param[:id] = Question.decode_id(param[:id]) if param[:id].present?
       param[:user_id] = User.decode_id(param[:user_id]) if param[:user_id].present?
       param[:answer_user_id] = User.decode_id(param[:answer_user_id]) if param[:answer_user_id].present?
-      # 公開情報となるため、open, doneの質問のみ取得
-      param[:status] = [Question.statuses[:open], Question.statuses[:done]]
+
+      logger.debug 'param[:is_self]'
+      logger.debug param[:is_self]
+      if param[:is_self].present?
+        # フラグが立っている場合のみ
+        param[:status] = [Question.statuses[:open], Question.statuses[:done], Question.statuses[:wip]]
+        param[:user_id] = current_user.id
+      else
+        # 公開情報となるため、open, doneの質問のみ取得
+        param[:status] = [Question.statuses[:open], Question.statuses[:done]]
+      end
+
       questions = SearchQuestionService.new.call(param)
       rows = questions.map{|question|
         {
@@ -30,7 +40,7 @@ module Api
     end
     private
     def api_param
-      params.permit(:id, :user_id, :answer_user_id, :order)
+      params.permit(:id, :user_id, :answer_user_id, :is_self, :order)
     end
   end
 end
