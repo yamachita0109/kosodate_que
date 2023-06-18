@@ -4,10 +4,6 @@ class MypageController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    param = { :user_id => current_user.id, :status => Question.statuses[:wip] }
-    questions = SearchQuestionService.new.call(param)
-    @pagy, @questions = pagy(questions)
-    @total_count = questions.count(:id)
   end
 
   def edit
