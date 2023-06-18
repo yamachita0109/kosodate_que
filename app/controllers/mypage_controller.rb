@@ -1,6 +1,5 @@
   # require 'RMagick'
 class MypageController < ApplicationController
-  include Pagy::Backend
   before_action :authenticate_user!
 
   def show
