@@ -1,8 +1,9 @@
 <% content_for :type, 'website' %>
+<% content_for :title, @tag.nil? ? '' : "#{@tag}の質問を探す" %>
 
 <div class="container mx-auto flex flex-wrap py-6">
   <section class="w-full md:w-3/4 flex flex-col px-3">
-    <%= render partial: 'layouts/h1', locals: { h1: '質問を探す' } %>
+    <%= render partial: 'layouts/h1', locals: { h1: @tag.nil? ? '質問を探す' : "#{@tag}の質問を探す" } %>
 
     <%# 検索 %>
     <%= render partial: 'question/layouts/index_form' %>

@@ -14,24 +14,45 @@
     </div>
     <div class="relative mb-4">
       <label class="leading-7 text-sm text-gray-600">Tweeter ID</label>
-      <p
-        class="w-full bg-white rounded border-b border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8"
-      ><%= current_user.twitter_id.blank? ? '-' : current_user.twitter_id %></p>
+      <div
+        class="w-full flex"
+      >
+        <span
+          class=" text-xs text-gray-700 py-1 px-2 leading-8"
+        >https://twitter.com/</span>
+        <p
+          class="w-full bg-white rounded border-b border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8"
+        ><%= current_user.twitter_id.blank? ? '-' : current_user.twitter_id %></p>
+      </div>
     </div>
     <div class="relative mb-4">
       <label class="leading-7 text-sm text-gray-600">Instagram ID</label>
-      <p
-        class="w-full bg-white rounded border-b border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8"
-      ><%= current_user.instagram_id.blank? ? '-' : current_user.instagram_id %></p>
+      <div
+        class="w-full flex"
+      >
+        <span
+          class=" text-xs text-gray-700 py-1 px-2 leading-8"
+        >https://www.instagram.com/</span>
+        <p
+          class="w-full bg-white rounded border-b border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8"
+        ><%= current_user.instagram_id.blank? ? '-' : current_user.instagram_id %></p>
+      </div>
     </div>
     <div class="relative mb-4">
       <label class="leading-7 text-sm text-gray-600">Facebook ID</label>
-      <p
-        class="w-full bg-white rounded border-b border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8"
-      ><%= current_user.facebook_id.blank? ? '-' : current_user.facebook_id %></p>
+      <div
+        class="w-full flex"
+      >
+        <span
+          class=" text-xs text-gray-700 py-1 px-2 leading-8"
+        >https://www.facebook.com/</span>
+        <p
+          class="w-full bg-white rounded border-b border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8"
+        ><%= current_user.facebook_id.blank? ? '-' : current_user.facebook_id %></p>
+      </div>
     </div>
     <div class="relative mb-4">
-      <label class="leading-7 text-sm text-gray-600">自身で運営しているサイト・ブログ</label>
+      <label class="leading-7 text-sm text-gray-600">自身で運営しているサイト・ブログURL</label>
       <p
         class="w-full bg-white rounded border-b border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8"
       ><%= current_user.site_url.blank? ? '-' : current_user.site_url %></p>

@@ -9,6 +9,7 @@ class QuestionController < ApplicationController
     questions = SearchQuestionService.new.call(param)
     @pagy, @questions = pagy(questions)
     @total_count = questions.count(:id)
+    @tag = param[:tag]
   end
 
   def new

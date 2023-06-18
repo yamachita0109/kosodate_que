@@ -9,7 +9,7 @@
         <%=
           form.text_field :name,
           class: "w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-        %>
+          %>
       </div>
 
       <div class="relative mb-8">
@@ -23,33 +23,55 @@
 
       <div class="relative mb-8">
         <label class="leading-7 text-sm text-gray-600">Tweeter ID</label>
-        <%=
-          form.text_field :twitter_id,
-          class: "w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-        %>
+        <div
+          class="w-full flex"
+        >
+          <span
+            class=" text-xs text-gray-700 py-1 px-2 leading-8"
+          >https://twitter.com/</span>
+          <%=
+            form.text_field :twitter_id,
+            class: "w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+          %>
+        </div>
       </div>
 
       <div class="relative mb-8">
         <label class="leading-7 text-sm text-gray-600">Instagram ID</label>
-        <%=
-          form.text_field :instagram_id,
-          class: "w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-        %>
+        <div
+          class="w-full flex"
+        >
+          <span
+            class=" text-xs text-gray-700 py-1 px-2 leading-8"
+          >https://www.instagram.com/</span>
+          <%=
+            form.text_field :instagram_id,
+            class: "w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+          %>
+        </div>
       </div>
 
       <div class="relative mb-8">
         <label class="leading-7 text-sm text-gray-600">Facebook ID</label>
-        <%=
-          form.text_field :facebook_id,
-          class: "w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-        %>
+        <div
+          class="w-full flex"
+        >
+          <span
+            class=" text-xs text-gray-700 py-1 px-2 leading-8"
+          >https://www.facebook.com/</span>
+          <%=
+            form.text_field :facebook_id,
+            class: "w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+          %>
+        </div>
       </div>
 
       <div class="relative mb-8">
-        <label class="leading-7 text-sm text-gray-600">自身で運営しているサイト・ブログ</label>
+        <label class="leading-7 text-sm text-gray-600">自身で運営しているサイト・ブログURL</label>
         <%=
           form.text_field :site_url,
-          class: "w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+          class: "w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out",
+          :placeholder => "https://mamapapa-qa.com/blog/"
         %>
       </div>
 
