@@ -47,20 +47,29 @@
         %>
         <p class="text-xs text-gray-500 mt-3">メールアドレス、パスワードを変更する場合は現在のパスワード入力してください。</p>
       </div>
-      <button
-        type="submit"
-        class="text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg focus:ring-4 focus:outline-none focus:ring-green-300"
-      >変更する</button>
+      <div class="relative text-center mb-4">
+        <button
+          type="button"
+          class="w-full md:w-auto text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded text-lg py-4 px-8 mb-4"
+          onClick="history.back()"
+        >戻る</button>
+        <button
+          type="submit"
+          class="w-full md:w-auto text-white bg-green-500 border-0 py-4 px-8 focus:outline-none hover:bg-green-600 rounded text-lg focus:ring-4 focus:outline-none focus:ring-green-300  mb-4"
+        >変更する</button>
+      </div>
     <% end %>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <div class="w-full pt-8 mt-8 border-t border-gray-200">
-        <%=
-          button_to "退会する",
-          registration_path(resource_name),
-          data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" },
-          method: :delete,
-          class: "mr-5 text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg focus:ring-4 focus:outline-none focus:ring-red-300"
-        %>
+        <div class="relative text-center mb-4">
+          <%=
+            button_to "退会する",
+            registration_path(resource_name),
+            data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" },
+            method: :delete,
+            class: "mr-5 text-white bg-red-500 border-0 py-4 px-8 focus:outline-none hover:bg-red-600 rounded text-lg focus:ring-4 focus:outline-none focus:ring-red-300"
+          %>
+        </div>
       </div>
     <% end %>
   </section>

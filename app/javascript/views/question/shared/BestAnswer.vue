@@ -62,10 +62,10 @@
             </li>
           </ul>
         </div>
-        <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+        <div class="relative text-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
           <button
             type="submit"
-            class="text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 rounded text-lg px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+            class="text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 rounded text-lg px-6 py-4 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
           >解決にする</button>
         </div>
       </div>
