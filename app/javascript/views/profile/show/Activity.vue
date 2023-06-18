@@ -25,8 +25,8 @@
         :key="question.id"
         class="text-gray-600 body-font overflow-hidden border-b border-gray-200 pb-4 mb-4"
       >
-        <div class="container px-5 py-6 mx-auto">
-          <div class="w-full -m-12">
+        <div class="container">
+          <div class="w-full">
             <div class="p-8 flex flex-col items-start">
               <h2 class="text-xl title-font font-medium text-gray-900 mb-2"><a :href="`/question/${question.id}`">{{ question.title }}</a></h2>
               <span>
@@ -55,8 +55,8 @@
         :key="question.id"
         class="text-gray-600 body-font overflow-hidden border-b border-gray-200 pb-4 mb-4"
       >
-        <div class="container px-5 py-6 mx-auto">
-          <div class="w-full -m-12">
+        <div class="container">
+          <div class="w-full">
             <div class="p-8 flex flex-col items-start">
               <h2 class="text-xl title-font font-medium text-gray-900 mb-2"><a :href="`/question/${question.id}`">{{ question.title }}</a></h2>
               <span>
