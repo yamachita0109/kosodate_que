@@ -1,24 +1,37 @@
-# README
+# kosodate_que
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+![スクリーンショット 2023-06-19 23 34 05](https://github.com/yamachita0109/kosodate_que/assets/24501645/6d1816a9-00b8-4c90-9a61-8f603f0d894b)
 
-Things you may want to cover:
+## SetUP
 
-* Ruby version
+```bash
+# PJ
+$ cp .env.sample .env
+$ docker-compose up -d --build
+$ docker-compose run --rm web bundle install
 
-* System dependencies
+# DB
+$ docker-compose run --rm web rails db:create
+$ docker-compose run --rm web rails db:migrate
 
-* Configuration
+# front
+$ yarn install
+$ yarn build
+$ docker-compose run --rm web rails tailwindcss:build
 
-* Database creation
+# web
+open http://localhost:3001
 
-* Database initialization
+# smtp(mailcatcher)
+open http://localhost:1080
+```
 
-* How to run the test suite
+## Dev
 
-* Services (job queues, cache servers, search engines, etc.)
+```bash
+# ts/vue
+yarn watch 
 
-* Deployment instructions
-
-* ...
+# Design
+docker-compose run --rm web rails tailwindcss:watch
+```
