@@ -109,7 +109,7 @@ export default defineComponent({
       this.inputForm.value = e.target.value || null
     },
     userImgPath(id) {
-      return `/user/${id}.jpg`
+      return `/cdn/user/${id}.jpg`
     },
   },
 })

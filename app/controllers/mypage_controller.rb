@@ -22,9 +22,8 @@ class MypageController < ApplicationController
     logo = params[:logo]
     uri = URI.parse(logo)
     data = decode(uri)
-    key = "user/#{current_user.hashid}.jpg"
-    url = "http://#{ENV['AWS_CDN_BUCKET']}.s3-website-ap-northeast-1.amazonaws.com/#{key}"
-    User.find(current_user.id).update!({ :logo => url })
+    key = "cdn/user/#{current_user.hashid}.jpg"
+    User.find(current_user.id).update!({ :logo => "/#{key}" })
     s3 = Aws::S3::Resource.new(region: Rails.application.config.aws_region)
     obj = s3.bucket(Rails.application.config.aws_bucket).object(key)
     obj.put( body: data )

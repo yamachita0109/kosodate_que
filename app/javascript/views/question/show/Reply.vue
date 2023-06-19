@@ -135,7 +135,7 @@ export default defineComponent({
       return `/profile/${id}`
     },
     userImgPath(id) {
-      return `/user/${id}.jpg`
+      return `/cdn/user/${id}.jpg`
     },
     formatDate(date) {
       return dayjs(date).format('YYYY/MM/DD HH:mm')
