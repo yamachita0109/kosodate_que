@@ -3,9 +3,9 @@ import "@hotwired/turbo-rails"
 Turbo.session.drive = false
 import "controllers"
 
-import './dist/main.js'
-import './dist/question/show/main.js'
-import './dist/question/edit/main.js'
-import './dist/question/new/main.js'
-import './dist/mypage/show/main.js'
-import './dist/profile/show/main.js'
+import 'dist/main'
+import 'dist/question/show/main'
+import 'dist/question/edit/main'
+import 'dist/question/new/main'
+import 'dist/mypage/show/main'
+import 'dist/profile/show/main'
