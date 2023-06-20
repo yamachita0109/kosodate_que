@@ -1,21 +1,12 @@
-<%
-  text = ''
-  color = ''
-  if question.wip?
-    text = '下書き'
-    color = 'yellow'
-  end
-  if question.open?
-    text = '質問中'
-    color = 'indigo'
-  end
-  if question.done?
-    text = '解決済'
-    color = 'red'
-  end
-  if question.del?
-    text = '取下げ'
-    color = 'gray'
-  end
-%>
-<span class='py-1 px-2 rounded bg-<%= color %>-100 text-<%= color %>-500 text-xs font-medium tracking-widest mb-2'><%= text %></span>
+<% if question.wip? %>
+  <span class='py-1 px-2 rounded bg-yellow-100 text-yellow-500 text-xs font-medium tracking-widest mb-2'>下書き</span>
+<% end %>
+<% if question.open? %>
+  <span class='py-1 px-2 rounded bg-indigo-100 text-indigo-500 text-xs font-medium tracking-widest mb-2'>質問中</span>
+<% end %>
+<% if question.done? %>
+  <span class='py-1 px-2 rounded bg-red-100 text-red-500 text-xs font-medium tracking-widest mb-2'>解決済</span>
+<% end %>
+<% if question.del? %>
+  <span class='py-1 px-2 rounded bg-gray-100 text-gray-500 text-xs font-medium tracking-widest mb-2'>取下げ</span>
+<% end %>
