@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_10_134232) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_21_145707) do
   create_table "ai_answers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "question_id", null: false
     t.text "content"
@@ -27,6 +27,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_10_134232) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["is_best_answer"], name: "index_answers_on_is_best_answer"
+    t.index ["question_id"], name: "index_answers_on_question_id"
+    t.index ["user_id"], name: "index_answers_on_user_id"
   end
 
   create_table "question_cnt_histories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -35,6 +38,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_10_134232) do
     t.string "status", default: "GOOD", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_question_cnt_histories_on_question_id"
   end
 
   create_table "questions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -49,6 +53,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_10_134232) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["status"], name: "index_questions_on_status"
+    t.index ["tags"], name: "index_questions_on_tags"
+    t.index ["title"], name: "index_questions_on_title"
   end
 
   create_table "replies", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -58,6 +65,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_10_134232) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["answer_id"], name: "index_replies_on_answer_id"
+    t.index ["user_id"], name: "index_replies_on_user_id"
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
