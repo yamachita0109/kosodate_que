@@ -1,7 +1,7 @@
 <footer class="text-gray-600 body-font border-t-2 border-gray-100">
   <div class="container px-5 py-12 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
     <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
-      <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+      <a href="<%= root_path %>" class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
         <span class="ml-3 text-xl">ママパパQ&A</span>
       </a>
       <p class="mt-2 text-sm text-gray-500">ママとパパのためのソーシャルQ&Aサイトです。育児に関する悩みや問題を解決するために利用できます。ママやパパ同士がお互いに支援し合ったりアドバイスをしたりすることで、育児に関する悩みを共有し、解決策を見つけることができます。</p>
@@ -9,75 +9,79 @@
     <div class="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
       <div class="lg:w-1/2 md:w-1/2 w-full px-4">
         <h2 class="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">ママパパQ&Aについて</h2>
-        <nav class="list-none mb-10">
-          <li>
-            <%=
-              link_to 'サイトトップ',
-              root_path,
-              class: "text-gray-600 hover:text-gray-800"
-            %>
-          </li>
-          <li>
-            <%=
-              link_to 'プライバシーポリシー',
-              privacy_path,
-              class: "text-gray-600 hover:text-gray-800"
-            %>
-          </li>
-          <li>
-            <%=
-              link_to '利用規約',
-              terms_path,
-              class: "text-gray-600 hover:text-gray-800"
-            %>
-          </li>
-          <li>
-            <%=
-              link_to 'お問い合わせ',
-              contact_path,
-              class: "text-gray-600 hover:text-gray-800"
-            %>
-          </li>
+        <nav class="list-none mb-10 text-lg ">
+          <ul>
+            <li>
+              <%=
+                link_to 'サイトトップ',
+                root_path,
+                class: "p-2 text-gray-600 hover:text-gray-800"
+              %>
+            </li>
+            <li>
+              <%=
+                link_to 'プライバシーポリシー',
+                privacy_path,
+                class: "p-2 text-gray-600 hover:text-gray-800"
+              %>
+            </li>
+            <li>
+              <%=
+                link_to '利用規約',
+                terms_path,
+                class: "p-2 text-gray-600 hover:text-gray-800"
+              %>
+            </li>
+            <li>
+              <%=
+                link_to 'お問い合わせ',
+                contact_path,
+                class: "p-2 text-gray-600 hover:text-gray-800"
+              %>
+            </li>
+          </ul>
         </nav>
       </div>
       <div class="lg:w-1/2 md:w-1/2 w-full px-4">
         <h2 class="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">カテゴリ一覧</h2>
-        <nav class="list-none mb-10">
-          <li>
-            <%=
-              link_to '妊活',
-              tag_path('妊活'),
-              class: "text-gray-600 hover:text-gray-800"
-            %>
-          </li>
-          <li>
-            <%=
-              link_to '妊娠',
-              tag_path('妊娠'),
-              class: "text-gray-600 hover:text-gray-800"
-            %>
-          </li>
-          <li>
-            <%=
-              link_to '出産',
-              tag_path('出産'),
-              class: "text-gray-600 hover:text-gray-800"
-            %>
-          </li>
-          <li>
-            <%=
-              link_to '赤ちゃん',
-              tag_path('赤ちゃん'),
-              class: "text-gray-600 hover:text-gray-800"
-            %>
-          </li>
-          <li>
-            <%=
-              link_to '子育て',
-              tag_path('子育て'),
-              class: "text-gray-600 hover:text-gray-800"
-            %>
-          </li>
+        <nav class="list-none mb-10 text-lg ">
+          <ul>
+            <li>
+              <%=
+                link_to '妊活',
+                tag_path('妊活'),
+                class: "p-2 text-gray-600 hover:text-gray-800"
+              %>
+            </li>
+            <li>
+              <%=
+                link_to '妊娠',
+                tag_path('妊娠'),
+                class: "p-2 text-gray-600 hover:text-gray-800"
+              %>
+            </li>
+            <li>
+              <%=
+                link_to '出産',
+                tag_path('出産'),
+                class: "p-2 text-gray-600 hover:text-gray-800"
+              %>
+            </li>
+            <li>
+              <%=
+                link_to '赤ちゃん',
+                tag_path('赤ちゃん'),
+                class: "p-2 text-gray-600 hover:text-gray-800"
+              %>
+            </li>
+            <li>
+              <%=
+                link_to '子育て',
+                tag_path('子育て'),
+                class: "p-2 text-gray-600 hover:text-gray-800"
+              %>
+            </li>
+          </ul>
         </nav>
       </div>
     </div>
