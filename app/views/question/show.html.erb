@@ -1,6 +1,9 @@
 <% content_for :title, @question.title %>
 <% content_for :description, @question.content %>
 <% content_for :keywords, @question.tags %>
+<% content_for :js do %>
+  <%= javascript_import_module_tag "dist/question/show/main" %>
+<% end %>
 
 <div class="container mx-auto flex flex-wrap py-6">
   <section class="w-full md:w-3/4 flex flex-col px-3">

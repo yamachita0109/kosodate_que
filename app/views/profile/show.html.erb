@@ -1,4 +1,7 @@
 <% content_for :title, "#{@user.name}のプロフィール" %>
+<% content_for :js do %>
+  <%= javascript_import_module_tag "dist/profile/show/main" %>
+<% end %>
 
 <section class="container md:w-3/4 lg:w-1/2 mx-auto flex flex-wrap">
   <div class="w-full flex flex-col">
