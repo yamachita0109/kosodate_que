@@ -53,7 +53,7 @@
               >
                 <div class="block">
                   <div class="w-full text-lg font-semibold flex gap-3 items-center mb-4">
-                    <img :src=userImgPath(answer.user_id) class="w-8 h-8 rounded-full flex-shrink-0 object-cover object-center" />
+                    <img :src=answer.user_logo class="w-8 h-8 rounded-full flex-shrink-0 object-cover object-center" />
                     {{ answer.user_name }}
                   </div>
                   <div class="w-full">{{ answer.content }}</div>
@@ -107,9 +107,6 @@ export default defineComponent({
     },
     selectAnswer(e) {
       this.inputForm.value = e.target.value || null
-    },
-    userImgPath(id) {
-      return `/cdn/user/${id}.jpg`
     },
   },
 })

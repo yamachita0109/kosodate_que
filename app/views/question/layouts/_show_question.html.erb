@@ -9,7 +9,7 @@
     <span class="hidden md:inline-block mr-2">投稿</span> <%= @question.created_at.strftime('%Y/%m/%d %H:%M') %>
   </p>
   <a href="<%= profile_path(@question.user_hashid) %>" class="inline-flex items-center ml-auto mr-3">
-    <img src="<%= @user.logo %>" class="w-8 h-8 rounded-full flex-shrink-0 object-cover object-center">
+    <img src="<%= @user.logo %>" class="w-8 h-8 rounded-full flex-shrink-0 object-cover object-center" alt="<%= question_user_name @user.name %>">
     <span class="flex-grow flex flex-col pl-3">
       <span class="title-font font-medium text-gray-900"><%= question_user_name @user.name %></span>
     </span>

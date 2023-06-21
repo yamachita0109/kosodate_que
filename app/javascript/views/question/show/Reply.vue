@@ -18,7 +18,7 @@
           </div>
           <div class="flex gap-3 items-center">
             <a :href=profilePath(answer.user_id) class="inline-flex items-center">
-              <img :src=userImgPath(answer.user_id) class="w-8 h-8 rounded-full flex-shrink-0 object-cover object-center">
+              <img :src=answer.user_logo class="w-8 h-8 rounded-full flex-shrink-0 object-cover object-center" :alt=answer.user_name>
               <span class="flex-grow flex flex-col pl-3">
                 <span class="font-bold text-gray-900">
                   {{ answer.user_name }}
@@ -69,7 +69,7 @@
             <div class="flex gap-3 items-center">
 
               <a :href=profilePath(reply.user_id) class="inline-flex items-center">
-                <img :src=userImgPath(reply.user_id) class="w-8 h-8 rounded-full flex-shrink-0 object-cover object-center">
+                <img reply.user_logo class="w-8 h-8 rounded-full flex-shrink-0 object-cover object-center">
                 <span class="flex-grow flex flex-col pl-3">
                   <span class="font-bold  text-gray-900">
                     {{ reply.user_name }}
@@ -133,9 +133,6 @@ export default defineComponent({
     },
     profilePath(id) {
       return `/profile/${id}`
-    },
-    userImgPath(id) {
-      return `/cdn/user/${id}.jpg`
     },
     formatDate(date) {
       return dayjs(date).format('YYYY/MM/DD HH:mm')

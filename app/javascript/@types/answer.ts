@@ -7,6 +7,7 @@ export type Answer = {
   is_best_answer: boolean;
   user_id: string;
   user_name: string;
+  user_logo: string;
   created_at: string;
   replies: Reply[];
 };
@@ -16,5 +17,6 @@ export type Reply = {
   content: string;
   user_id: string;
   user_name: string;
+  user_logo: string;
   created_at: string;
 };
