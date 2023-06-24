@@ -34,7 +34,13 @@ export default defineComponent({
     const res = await this.getTags()
     const tags = res?.data?.rows ?? []
     const inputInside = this.$refs.tags
-    new Tagify(inputInside, { whitelist: tags })
+    new Tagify(inputInside, {
+      pattern: /^.{0,20}$/,
+      delimiters: ',| ',
+      whitelist: tags,
+      trim: false,
+      maxTags: 10,
+    })
   },
   methods: {
     async getTags() {
