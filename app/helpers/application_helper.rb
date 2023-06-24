@@ -4,7 +4,7 @@ module ApplicationHelper
   def site_title(page_title = '')
     base_title = 'ママパパQ&A'
     return base_title if page_title.empty?
-    "#{base_title} | #{page_title}"
+    "#{page_title} | #{base_title}"
   end
 
   def site_description(page_description = '')

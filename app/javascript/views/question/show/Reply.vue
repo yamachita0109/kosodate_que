@@ -30,32 +30,28 @@
           </div>
           <div
             v-html="answer.content.replace(/\n/g, '<br>')"
-            class="text-gray-600 mt-2"
+            class="text-gray-600 mt-4 mb-8"
           ></div>
-          <button
-            class="text-right text-green-500 mt-4"
-            @click="repliesFromShow[answer.id] = true"
-            v-show="!repliesFromShow[answer.id]"
-            v-if="qstatus == 'open'"
-          >コメントする</button>
-
           <div
-            v-show="repliesFromShow[answer.id]"
-            class="w-full mt-4"
+            class="flex items-center px-3 py-2 rounded-lg bg-gray-50 dark:bg-gray-700"
+            v-if="qstatus == 'open'"
           >
             <textarea
+              id="chat"
+              rows="1"
+              class="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-green-500 focus:border-green-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+              placeholder="コメントする"
               v-model="repliesFrom[answer.id]"
-              maxlength="2000"
-              class="w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 h-12 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
             ></textarea>
             <button
-              class="text-right text-green-500 mt-2"
               type="button"
+              class="inline-flex justify-center p-2 text-green-600 rounded-full cursor-pointer hover:bg-green-100 dark:text-green-500 dark:hover:bg-gray-600"
               @click="clickReply(answer.id)"
-            >コメントする</button>
+            >
+              <svg aria-hidden="true" class="w-6 h-6 rotate-90" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path></svg>
+              <span class="sr-only">コメントする</span>
+            </button>
           </div>
-
-
         </div>
       </div>
 
@@ -80,7 +76,7 @@
               </a>
             </div>
             <p class="text-gray-600 mt-2">
-                {{ reply.content }}
+              {{ reply.content }}
             </p>
           </div>
         </div>
@@ -106,7 +102,6 @@ export default defineComponent({
       answers: [] as Answer[],
       qstatus: '' as string,
       repliesFrom: [] as string[],
-      repliesFromShow: [] as boolean[],
     }
   },
   async created() {
@@ -116,6 +111,10 @@ export default defineComponent({
   methods: {
     async clickReply(id) {
       const text = this.repliesFrom[id]
+      if (!text) {
+        alert('入力してください。')
+        return
+      }
       await this.postReply(id, text)
       this.repliesFrom[id] = ''
       this.answers = await this.getAnswer()

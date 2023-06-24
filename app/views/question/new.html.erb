@@ -12,18 +12,17 @@
         <label class="leading-7 text-sm text-gray-600">タイトル</label>
         <%=
           form.text_field :title,
-          maxlength: 200,
+          maxlength: 40,
           required: true,
-          class: "w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+          class: "w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out",
+          placeholder: "タイトルは30文字程度で、キーワードを最低1つは入れましょう。"
         %>
-        <p class="text-xs text-gray-500 mt-3">タイトルは質問内容を簡潔に書きましょう。</p>
       </div>
 
       <div class="relative mb-4">
         <label class="leading-7 text-sm text-gray-600">タグ</label>
         <div id="vue-tags"></div>
         <%= form.hidden_field :tags, required: true %>
-        <p class="text-xs text-gray-500 mt-3">質問に関するタグを3つほど入力しましょう。</p>
       </div>
 
       <div class="relative mb-4">
@@ -32,13 +31,14 @@
           form.text_area :content,
           maxlength: 2000,
           required: true,
-          class: "w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 h-96 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
+          class: "w-full bg-white rounded border border-gray-300 focus:border-green-500 focus:ring-2 focus:ring-green-200 h-96 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out",
+          placeholder: "内容や状況は詳しく書きましょう。"
         %>
       </div>
 
       <div class="relative mb-4">
         <%= form.select :status,
-          [['下書き', 'wip'], ['公開する', 'open']],{},
+          [['下書き', 'wip'], ['投稿する', 'open']],{},
           class: "border border-gray-300 text-gray-900 text-sm rounded focus:ring-green-200 focus:border-green-500 block p-2.5"
         %>
         <p class="text-xs text-red-500 mt-3">投稿するを選択すると、質問が公開されます。</p>
