@@ -30,4 +30,7 @@ module ApplicationHelper
     page_type
   end
 
+  def text_format(text)
+    sanitize(h(text).gsub(/\n/, '<br>'), tags: %w(p br))
+  end
 end

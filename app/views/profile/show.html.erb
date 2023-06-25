@@ -86,7 +86,7 @@
         <label class="leading-7 text-sm text-gray-600">自己紹介</label>
         <div
           class="w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8"
-        ><%= @user.content.blank? ? '-' : simple_format(h(@user.content)) %></div>
+        ><%= @user.content.blank? ? '-' : text_format(@user.content) %></div>
       </div>
     </div>
   </div>
