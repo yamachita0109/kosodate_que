@@ -1,1 +1,31 @@
-send_get_best_answer.html.erb
+<p><%= @display_name %> 様</p>
+
+<p>こんにちは！いつもママパパQ&Aをご利用いただきありがとうございます。</p>
+
+<p>
+あなたの回答がベストアンサーに選ばれました！<br />
+これからも素晴らしい回答を投稿してください！
+</p>
+
+<p>
+=========================<br />
+質問内容<br />
+=========================<br />
+【<%= @q.title %>】<br />
+<%= simple_format(h(@q.content)) %>
+</p>
+
+<p>
+▼質問の確認はこちらから<br />
+<%= link_to question_url(@q.hashid), question_url(@q.hashid) %>
+</p>
+
+-------------------------<br />
+ママパパQ&A<br />
+<%= link_to root_url, root_url %><br />
+<br />
+お問合せ：<%= link_to contact_url, contact_url %><br />
+<br />
+個人情報取扱方針についてはこちらをご覧ください。<br />
+<%= link_to privacy_url, privacy_url %><br />
+-------------------------

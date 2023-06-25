@@ -23,10 +23,12 @@ class UserMailer < ApplicationMailer
     mail(to: @u.email, subject: '【ママパパQ&A】リプライされました')
   end
 
-  # TODO best answer
-  def send_best_answer
-    @user = @recipient
-    mail(to: @u.email, subject: 'send_best_answer')
+  def send_best_answer(question, answer)
+    @q = question
+    @a = answer
+    @u = User.find(answer.user_id)
+    @display_name = display_name
+    mail(to: @u.email, subject: '【ママパパQ&A】ベストアンサーに選ばれました')
   end
 
   private

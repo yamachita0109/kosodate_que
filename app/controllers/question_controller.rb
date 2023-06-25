@@ -73,6 +73,7 @@ class QuestionController < ApplicationController
       answer = Answer.find_by_hashid param[:answer_id]
       answer.update!({:is_best_answer => true})
       msg = '解決にしました'
+      UserMailer.send_best_answer(@question, answer).deliver_now
     end
     param.delete :answer_id
 

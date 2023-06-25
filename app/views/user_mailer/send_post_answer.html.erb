@@ -7,22 +7,32 @@
 内容を確認してください。
 </p>
 
-<pre>
-=========================
-質問内容
-=========================
-【<%= @q.title %>】
-<%= @q.content %>
+<p>
+=========================<br />
+質問内容<br />
+=========================<br />
+【<%= @q.title %>】<br />
+<%= simple_format(h(@q.content)) %>
+</p>
 
-=========================
-コメント内容
-=========================
-<%= @a.content %>
+<p>
+=========================<br />
+コメント内容<br />
+=========================<br />
+<%= simple_format(h(@a.content)) %>
+</p>
 
-▼質問・コメントの確認はこちらから
-<%= question_url(@q.hashid) %>
-</pre>
+<p>
+▼質問・コメントの確認はこちらから<br />
+<%= link_to question_url(@q.hashid), question_url(@q.hashid) %>
+</p>
 
-<hr />
+-------------------------<br />
 ママパパQ&A<br />
-https://mamapapa-qa.com
+<%= link_to root_url, root_url %><br />
+<br />
+お問合せ：<%= link_to contact_url, contact_url %><br />
+<br />
+個人情報取扱方針についてはこちらをご覧ください。<br />
+<%= link_to privacy_url, privacy_url %><br />
+-------------------------
