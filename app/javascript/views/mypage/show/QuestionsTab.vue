@@ -3,17 +3,17 @@
     <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400" role="tablist">
       <li class="mr-2" role="presentation">
         <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="wip-tab-content" type="button" role="tab" aria-controls="wip-content" aria-selected="false">
-          下書き
+          下書き（{{ wipQuestions.length }}）
         </button>
       </li>
       <li class="mr-2" role="presentation">
         <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="open-tab-content" type="button" role="tab" aria-controls="open-content" aria-selected="false">
-          質問中
+          質問中（{{ openQuestions.length }}）
         </button>
       </li>
       <li role="presentation">
         <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="done-tab-content" type="button" role="tab" aria-controls="done-content" aria-selected="false">
-          解決済
+          解決済（{{ doneQuestions.length }}）
         </button>
       </li>
     </ul>

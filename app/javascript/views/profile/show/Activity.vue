@@ -3,12 +3,12 @@
     <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400" role="tablist">
       <li class="mr-2" role="presentation">
         <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="question-tab-content" type="button" role="tab" aria-controls="question-content" aria-selected="false">
-          質問履歴
+          質問履歴（{{ questions.length }}）
         </button>
       </li>
       <li role="presentation">
         <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="answer-tab-content" type="button" role="tab" aria-controls="answer-content" aria-selected="false">
-          回答した質問
+          回答した質問（{{ answerQuestions.length }}）
         </button>
       </li>
     </ul>
